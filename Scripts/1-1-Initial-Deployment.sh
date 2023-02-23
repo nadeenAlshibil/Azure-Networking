@@ -63,20 +63,6 @@ az network nsg create \
   --name MyNsg-VMSubnet  \
   --location $Location
 
-# Create an NSG rule to allow SSH traffic in from the Internet to the VM subnet.
-az network nsg rule create \
-  --resource-group $RgName \
-  --nsg-name MyNsg-VMSubnet  \
-  --name Allow-SSH-All \
-  --access Allow \
-  --protocol Tcp \
-  --direction Inbound \
-  --priority 100 \
-  --source-address-prefix Internet \
-  --source-port-range "*" \
-  --destination-address-prefix "10.1.0.4" \
-  --destination-port-range 22
-
  
  # Associate the NSG to the VMSubnet subnet.
 az network vnet subnet update \
@@ -86,31 +72,21 @@ az network vnet subnet update \
   --network-security-group MyNsg-VMSubnet
  
  
-# Create a public IP address for the VM.
-az network public-ip create \
-  --resource-group $RgName \
-  --name myVm-ip2
-
 # Create a NIC for the VM.
 az network nic create \
   --resource-group $RgName \
-  --name MyNic2 \
+  --name MyNic \
   --vnet-name myVMVNet \
   --subnet VMSubnet \
   --network-security-group MyNsg-VMSubnet \
-  --public-ip-address myVm-ip2
+
 
 # Create a VM in the VM subnet.
 az vm create \
   --resource-group $RgName \
-  --name myVM2 \
-  --nics MyNic2 \
+  --name myVM \
+  --nics MyNic \
   --image Canonical:UbuntuServer:18.04-LTS:latest \
   --size Standard_B2s \
   --admin-username azureadmin \
   --authentication-type password
-
-  
-  #
- 
-  # --admin-password "Demouser@123" \

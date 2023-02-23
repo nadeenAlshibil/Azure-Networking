@@ -1,31 +1,5 @@
 Secure your application in a hub and spoke topology!
 
-Agenda
-
-Introduction	2
-Scenario 1: Hub and spoke architecture - Dedicated virtual network for private endpoints	3
-Scenario 2: Hub and spoke architecture - Shared virtual network for private endpoints and virtual machines	3
-Scenario 3: Single virtual network	4
-Scenario 4: On-premises traffic to private endpoints	5
-LAB :	6
-Create a VM & networks	6
-Azure Firewall network	7
-Virtual machine network	8
-Private endpoint network	8
-Create virtual machine	9
-Deploy the Firewall	10
-Enable firewall logs	11
-Create Azure SQL database	11
-Create private endpoint	12
-Connect the virtual networks using virtual network peering	14
-Link the virtual networks to the private DNS zone	14
-Configure an application rule with SQL FQDN in Azure Firewall	15
-Route traffic between the virtual machine and private endpoint through Azure Firewall	16
-Connect to the virtual machine from your client computer	17
-Access SQL Server privately from the virtual machine	17
-Validate the traffic in Azure Firewall logs	18
-Clean up resources	19
-
 
   
 Introduction

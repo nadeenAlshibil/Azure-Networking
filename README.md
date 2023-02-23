@@ -25,6 +25,10 @@ The use of application rules over network rules is recommended when inspecting t
 ### Note
 SQL FQDN filtering is supported in proxy-mode only (port 1433). Proxy mode can result in more latency compared to redirect. If you want to continue using redirect mode, which is the default for clients connecting within Azure, you can filter access using FQDN in firewall network rules.
 
+### Note
+If you want to secure traffic to private endpoints in Azure Virtual WAN using secured virtual hub, see Secure traffic destined to private endpoints in Azure Virtual WAN.
+
+
 ## Scenario 1: Hub and spoke architecture - Shared virtual network for private endpoints and virtual machines
  
 This scenario is implemented when:

@@ -32,30 +32,32 @@ If you want to secure traffic to private endpoints in Azure Virtual WAN using se
 ## Scenario 1: Hub and spoke architecture - Shared virtual network for private endpoints and virtual machines
  
 This scenario is implemented when:
-•	It's not possible to have a dedicated virtual network for the private endpoints
-•	When only a few services are exposed in the virtual network using private endpoints
+	• It's not possible to have a dedicated virtual network for the private endpoints
+	• When only a few services are exposed in the virtual network using private endpoints
 The virtual machines will have /32 system routes pointing to each private endpoint. One route per private endpoint is configured to route traffic through Azure Firewall.
 The administrative overhead of maintaining the route table increases as services are exposed in the virtual network. The possibility of hitting the route limit also increases.
 Depending on your overall architecture, it's possible to run into the 400 routes limit. It's recommended to use scenario 1 whenever possible.
 Connections from a client virtual network to the Azure Firewall in a hub virtual network will incur charges if the virtual networks are peered. Connections from Azure Firewall in a hub virtual network to private endpoints in a peered virtual network are not charged.
 For more information on charges related to connections with peered virtual networks, see the FAQ section of the pricing page.
 
-##  Scenario 2: Single virtual network
+## Scenario 2: Single virtual network
  
 Use this pattern when a migration to a hub and spoke architecture isn't possible. The same considerations as in scenario 2 apply. In this scenario, virtual network peering charges don't apply.
 
-##  Scenario 3: On-premises traffic to private endpoints
+## Scenario 3: On-premises traffic to private endpoints
  
 This architecture can be implemented if you have configured connectivity with your on-premises network using either:
-  •	ExpressRoute
-  •	Site to Site VPN
+	• ExpressRoute
+	• Site to Site VPN
 If your security requirements require client traffic to services exposed via private endpoints to be routed through a security appliance, deploy this scenario.
-The same considerations as in scenario 2 above apply. In this scenario, there aren't virtual network peering charges. For more information about how to configure your DNS servers to allow on-premises workloads to access private endpoints, see On-Premises workloads using a DNS forwarder.
+The same considerations as in scenario 1 above apply. In this scenario, there aren't virtual network peering charges. For more information about how to configure your DNS servers to allow on-premises workloads to access private endpoints, see On-Premises workloads using a DNS forwarder.
 
-##  Scenario 4: Hub and spoke architecture - Dedicated virtual network for private endpoints
+## Scenario 4: Hub and spoke architecture - Dedicated virtual network for private endpoints
  
 This scenario is the most expandable architecture to connect privately to multiple Azure services using private endpoints. A route pointing to the network address space where the private endpoints are deployed is created. This configuration reduces administrative overhead and prevents running into the limit of 400 routes.
+
 Connections from a client virtual network to the Azure Firewall in a hub virtual network will incur charges if the virtual networks are peered. Connections from Azure Firewall in a hub virtual network to private endpoints in a peered virtual network are not charged.
+
 For more information on charges related to connections with peered virtual networks, see the FAQ section of the pricing page.
 
 

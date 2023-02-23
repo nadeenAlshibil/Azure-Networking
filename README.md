@@ -3,11 +3,13 @@
 
 # Introduction	
 
-Private endpoints enable Azure resources deployed in a virtual network to communicate privately with private link resources.
-Private endpoints allow resources access to the private link service deployed in a virtual network. Access to the private endpoint through virtual network peering and on-premises network connections extend the connectivity.
+Azure Private Link enables you to access Azure PaaS Services (for example, Azure Storage and SQL Database) and Azure hosted customer-owned/partner services over a private endpoint in your virtual network.
 
+Traffic between your virtual network and the service travels the Microsoft backbone network. Exposing your service to the public internet is no longer necessary.
+Access to the private endpoint through virtual network peering and on-premises network connections extend the connectivity.
 
 You may need to inspect or block traffic from clients to the services exposed via private endpoints. Complete this inspection by using Azure Firewall or a third-party network virtual appliance.
+
 The following limitations apply:
 	• Network security groups (NSG) are bypassed by traffic coming from private endpoints
 	• User-defined routes (UDR) are bypassed by traffic coming from private endpoints. User-defined routes can be used to override traffic destined for the private 	endpoint.

@@ -74,7 +74,7 @@ We will be using an Azure CLI script to deploy the networks and the VM:
   1.	Download the script here: https://aka.ms/AzureNetworksLab
   2.	Login to the portal & launch the cloud shell:
  
- ![image](Images/Login to the portal.png)
+ ![image](Images/Login-to-the-portal.png)
 
 3.	List your subscriptions :
 az account list –o table

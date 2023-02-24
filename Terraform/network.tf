@@ -34,6 +34,7 @@ resource "azurerm_subnet" "subnetbastion" {
   resource_group_name                            = azurerm_resource_group.default.name
   virtual_network_name                           = azurerm_virtual_network.vnetvm.name
   address_prefixes                               = var.subnetbastion_address_space
+  service_endpoints = ["Microsoft.KeyVault"]
 }
 
 resource "azurerm_network_security_group" "nsgvm" {

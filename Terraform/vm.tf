@@ -39,6 +39,11 @@ resource "random_id" "kvname" {
   prefix = "keyvault"
 }
 
+#Get my IP 
+data "http" "myip" {
+  url = "https://ifconfig.me/ip"
+}
+
 #Keyvault Creation
 resource "azurerm_key_vault" "keyvault" {
   name                       = random_id.kvname.hex
@@ -48,6 +53,13 @@ resource "azurerm_key_vault" "keyvault" {
   sku_name                   = "premium"
   soft_delete_retention_days = 7
   enable_rbac_authorization  = true
+  network_acls {
+    bypass = "AzureServices"
+    default_action = "Deny"
+    ip_rules = [ data.http.myip.response_body ]
+    virtual_network_subnet_ids = [azurerm_subnet.subnetbastion.id ]
+  }
+
 }
 
 resource "azurerm_role_assignment" "allowme" {

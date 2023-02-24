@@ -36,6 +36,17 @@ resource "azurerm_subnet" "subnetbastion" {
   address_prefixes                               = var.subnetbastion_address_space
 }
 
+resource "azurerm_network_security_group" "nsgvm" {
+  name                = "nsgvm"
+  location            = azurerm_resource_group.default.location
+  resource_group_name = azurerm_resource_group.default.name
+}
+
+resource "azurerm_subnet_network_security_group_association" "assocnsg" {
+  subnet_id                 = azurerm_subnet.subnetvm.id
+  network_security_group_id = azurerm_network_security_group.nsgvm.id
+}
+
 #PE vnet
 resource "azurerm_virtual_network" "vnetpe" {
   name                = "vnetpe-${var.name}-${var.environment}"

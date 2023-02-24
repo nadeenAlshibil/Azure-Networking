@@ -1,15 +1,4 @@
-#VM
-resource "azurerm_network_security_group" "nsgvm" {
-  name                = "nsgvm"
-  location            = azurerm_resource_group.default.location
-  resource_group_name = azurerm_resource_group.default.name
-}
-
-resource "azurerm_subnet_network_security_group_association" "assocnsg" {
-  subnet_id                 = azurerm_subnet.subnetvm.id
-  network_security_group_id = azurerm_network_security_group.nsgvm.id
-}
-
+#NIC
 resource "azurerm_network_interface" "nicvm" {
   name                = "nicvm"
   location            = azurerm_resource_group.default.location
@@ -19,34 +8,6 @@ resource "azurerm_network_interface" "nicvm" {
     name                          = "internal"
     subnet_id                     = azurerm_subnet.subnetvm.id
     private_ip_address_allocation = "Dynamic"
-  }
-}
-
-resource "azurerm_linux_virtual_machine" "vmlab" {
-  name                = "vmlab"
-  location            = azurerm_resource_group.default.location
-  resource_group_name = azurerm_resource_group.default.name
-  size                = "Standard_B2s"
-  admin_username      = "adminuser"
-  network_interface_ids = [
-    azurerm_network_interface.nicvm.id,
-  ]
-
-  admin_ssh_key {
-    username   = "adminuser"
-    public_key = file("~/.ssh/id_rsa.pub")
-  }
-
-  os_disk {
-    caching              = "ReadWrite"
-    storage_account_type = "Standard_LRS"
-  }
-
-  source_image_reference {
-    publisher = "Canonical"
-    offer     = "UbuntuServer"
-    sku       = "18.04-LTS"
-    version   = "latest"
   }
 }
 
@@ -70,3 +31,81 @@ resource "azurerm_bastion_host" "bastion" {
     public_ip_address_id = azurerm_public_ip.pubipbastion.id
   }
 }
+
+
+#Create Unique KeyVault name
+resource "random_id" "kvname" {
+  byte_length = 5
+  prefix = "keyvault"
+}
+
+#Keyvault Creation
+resource "azurerm_key_vault" "keyvault" {
+  name                       = random_id.kvname.hex
+  location                   = azurerm_resource_group.default.location
+  resource_group_name        = azurerm_resource_group.default.name
+  tenant_id                  = data.azurerm_client_config.current.tenant_id
+  sku_name                   = "premium"
+  soft_delete_retention_days = 7
+  enable_rbac_authorization  = true
+}
+
+resource "azurerm_role_assignment" "allowme" {
+  scope                = azurerm_key_vault.keyvault.id
+  role_definition_name = "Key Vault Administrator"
+  principal_id         = data.azuread_client_config.current.object_id
+}
+
+resource "azurerm_role_assignment" "allowvm" {
+  scope                = azurerm_key_vault.keyvault.id
+  role_definition_name = "Key Vault Secrets User"
+  principal_id         = azurerm_linux_virtual_machine.vmlab.identity[0].principal_id
+}
+
+
+# Create an SSH key
+resource "tls_private_key" "sshkey" {
+  algorithm = "RSA"
+  rsa_bits  = 4096
+}
+
+resource "azurerm_key_vault_secret" "secret" {
+  name         = "secret-privkey"
+  value        = tls_private_key.sshkey.private_key_openssh
+  key_vault_id = azurerm_key_vault.keyvault.id
+}
+
+
+resource "azurerm_linux_virtual_machine" "vmlab" {
+  name                = "vmlab"
+  location            = azurerm_resource_group.default.location
+  resource_group_name = azurerm_resource_group.default.name
+  size                = "Standard_B2s"
+  admin_username      = "adminuser"
+  network_interface_ids = [
+    azurerm_network_interface.nicvm.id,
+  ]
+
+  admin_ssh_key {
+    username   = "adminuser"
+    public_key = tls_private_key.sshkey.public_key_openssh
+  }
+
+  os_disk {
+    caching              = "ReadWrite"
+    storage_account_type = "Standard_LRS"
+  }
+
+  source_image_reference {
+    publisher = "Canonical"
+    offer     = "UbuntuServer"
+    sku       = "18.04-LTS"
+    version   = "latest"
+  }
+
+  identity {
+    type    = "SystemAssigned"
+  }
+}
+
+

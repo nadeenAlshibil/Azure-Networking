@@ -44,6 +44,21 @@ data "http" "myip" {
   url = "https://ifconfig.me/ip"
 }
 
+#Private endpoint for keyvault access
+resource "azurerm_private_endpoint" "keyvaultPE" {
+  name                = "keyvaultprivendpoint"
+  location            = azurerm_resource_group.default.location
+  resource_group_name = azurerm_resource_group.default.name
+  subnet_id           = azurerm_subnet.subnetvm.id
+
+  private_service_connection {
+    name                           = "AzureKeyVault"
+    subresource_names              = [ "vault" ]
+    private_connection_resource_id = azurerm_key_vault.keyvault.id
+    is_manual_connection           = false
+  }
+}
+
 #Keyvault Creation
 resource "azurerm_key_vault" "keyvault" {
   name                       = random_id.kvname.hex
@@ -57,7 +72,6 @@ resource "azurerm_key_vault" "keyvault" {
     bypass = "AzureServices"
     default_action = "Deny"
     ip_rules = [ data.http.myip.response_body ]
-    virtual_network_subnet_ids = [azurerm_subnet.subnetbastion.id ]
   }
 
 }

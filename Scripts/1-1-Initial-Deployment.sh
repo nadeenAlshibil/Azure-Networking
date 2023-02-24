@@ -71,21 +71,22 @@ az network vnet subnet update \
   --resource-group $RgName \
   --network-security-group MyNsg-VMSubnet
  
-
+ 
 # Create a NIC for the VM.
 az network nic create \
   --resource-group $RgName \
-  --name MyNic2 \
+  --name MyNic \
   --vnet-name myVMVNet \
-  --subnet VMSubnet 
+  --subnet VMSubnet \
+  --network-security-group MyNsg-VMSubnet \
+
 
 # Create a VM in the VM subnet.
 az vm create \
   --resource-group $RgName \
-  --name myVM2 \
-  --nics MyNic2 \
+  --name myVM \
+  --nics MyNic \
   --image Canonical:UbuntuServer:18.04-LTS:latest \
   --size Standard_B2s \
-  --generate-ssh-keys 
-
-
+  --admin-username azureadmin \
+  --authentication-type password

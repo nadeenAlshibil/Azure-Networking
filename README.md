@@ -47,6 +47,8 @@ For more information on charges related to connections with peered virtual netwo
  
 Use this pattern when a migration to a hub and spoke architecture isn't possible. The same considerations as in scenario 2 apply. In this scenario, virtual network peering charges don't apply.
 
+ ![image](Images/Single-Vnet.png)
+
 ## Scenario 3: On-premises traffic to private endpoints
  
 This architecture can be implemented if you have configured connectivity with your on-premises network using either:
@@ -54,6 +56,7 @@ This architecture can be implemented if you have configured connectivity with yo
 - Site to Site VPN
 If your security requirements require client traffic to services exposed via private endpoints to be routed through a security appliance, deploy this scenario.
 The same considerations as in scenario 1 above apply. In this scenario, there aren't virtual network peering charges. For more information about how to configure your DNS servers to allow on-premises workloads to access private endpoints, see On-Premises workloads using a DNS forwarder.
+ ![image](Images/Onpremises-to-PEs.png)
 
 ## Scenario 4: Hub and spoke architecture - Dedicated virtual network for private endpoints
  
@@ -61,7 +64,7 @@ This scenario is the most expandable architecture to connect privately to multip
 
 Connections from a client virtual network to the Azure Firewall in a hub virtual network will incur charges if the virtual networks are peered. Connections from Azure Firewall in a hub virtual network to private endpoints in a peered virtual network are not charged.
 
-For more information on charges related to connections with peered virtual networks, see the FAQ section of the pricing page.
+ ![image](Images/Hub&spoke-Dedicated-Vnet-for-PEs.png)
 
 
 # LAB :

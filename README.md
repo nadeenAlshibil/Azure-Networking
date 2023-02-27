@@ -11,12 +11,14 @@ Access to the private endpoint through virtual network peering and on-premises n
 You may need to inspect or block traffic from clients to the services exposed via private endpoints. Complete this inspection by using Azure Firewall or a third-party network virtual appliance.
 
 The following limitations apply:
+
 	• Network security groups (NSG) are bypassed by traffic coming from private endpoints
-	• User-defined routes (UDR) are bypassed by traffic coming from private endpoints. User-defined routes can be used to override traffic destined for the private 	endpoint.
+	• User-defined routes (UDR) are bypassed by traffic coming from private endpoints. User-defined routes can be used to override 	traffic destined for the private endpoint.
 	• A single route table can be attached to a subnet
 	• A route table supports up to 400 routes
 
 Azure Firewall filters traffic using either:
+
 	• FQDN in network rules for TCP and UDP protocols
 	• FQDN in application rules for HTTP, HTTPS, and MSSQL.
  

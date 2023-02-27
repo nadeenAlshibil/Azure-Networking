@@ -81,7 +81,7 @@ In this Lab you will deploy Scenario 4 with a Hub and spoke topology. You’ll c
 
 See, Create a Log Analytics workspace in the Azure portal to create a workspace if you don't have one in your subscription.
 
-## Create a VM & networks
+## Exercice 1: Create a VM & networks
 
 In this section, you'll create a virtual network and subnet to host the VM used to access your private link resource. An Azure SQL database is used later as the example service.
 

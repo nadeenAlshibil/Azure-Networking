@@ -84,6 +84,7 @@ See, Create a Log Analytics workspace in the Azure portal to create a workspace 
 
 ## Exercice 1: Create a VM & networks
 
+### Task 1: Create resources
 In this section, you'll create a virtual network and subnet to host the VM used to access your private link resource. An Azure SQL database is used later as the example service.
 
 We will be using an Azure CLI script to deploy the networks and the VM:
@@ -94,18 +95,15 @@ We will be using an Azure CLI script to deploy the networks and the VM:
  ![image](Images/Login-to-the-portal.png) 
  
  3.	List your subscriptions : `az account list –o table`
+ 4.	Set the right the subscription if needed: `az account set ––subscription {id}`
+ 5.	Upload the script via Azure portal
+ 6.	Move the script under the clouddrive: `mv  1-1-Create-Network.sh  clouddrive/`
+ 7.	Go to the clouddrive:  `cd clouddrive`
+ 8.	Launch the script:  `./1-1-Create-Network.sh`
 
-4.	Set the right the subscription if needed: `az account set ––subscription {id}`
+### Task 2: Check the deployment
 
-5.	Upload the script via Azure portal:
-
-6.	Move the script under the clouddrive: `mv  1-1-Create-Network.sh  clouddrive/`
-
-7.	Go to the clouddrive:  `cd clouddrive`
-
-8.	Launch the script:  `./1-1-Create-Network.sh`
-
-Check the deployment, you should have a resource group myResourceGroup, three networks and a VM with following parameters: 
+You should have a resource group myResourceGroup, three networks, a VM and an Azure Bastion with following parameters: 
 
 **Azure Firewall network**
 
@@ -141,11 +139,19 @@ Check the deployment, you should have a resource group myResourceGroup, three ne
 
 | Parameter	 | Value |
 |------------| ------|
-| Virtual MACHINE name |	myVM|
+| Virtual machine name |	myVM|
 | Region name |	North Europe |
 | Image |	Ubuntu Server 18.04 LTS - Gen1|
 | Size 	|Standard_B2s|
- 
+
+**Azure Bastion**
+
+| Parameter	 | Value |
+|------------| ------|
+| Name |	MyBastion|
+| Region name |	North Europe |
+| Public ip adress |	BastionPublicIpAddress|
+| Virtual network/subnet| myVMVNet/AzureBastionSubnet|
 
 **About outbound access for Azure VMs**
 
@@ -163,6 +169,7 @@ For more information about outbound connections in Azure, see Default outbound a
 
 ## Exercice 2: Deploy Azure Firewall
 
+### Task 1: Create the resource
 1.	On the Azure portal menu or from the Home page, select Create a resource.
 2.	Type firewall in the search box and press Enter.
 3.	Select Firewall and then select Create.
@@ -170,4 +177,7 @@ For more information about outbound connections in Azure, see Default outbound a
  
  <img src="Images/Create-Azure-Firewall.png" width="800">
  
- 
+5.	Select Review + create. You're taken to the Review + create page where Azure validates your configuration.
+6.	When you see the Validation passed message, select Create.
+
+### Task 2: Enable firewall logs

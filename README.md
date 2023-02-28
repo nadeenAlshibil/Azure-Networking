@@ -181,3 +181,13 @@ For more information about outbound connections in Azure, see Default outbound a
 6.	When you see the Validation passed message, select Create.
 
 ### Task 2: Enable firewall logs
+
+In this section, you enable the logs on the firewall.
+
+1.	In the Azure portal, select All resources in the left-hand menu.
+2.	Select the firewall **myAzureFirewall** in the list of resources.
+3.	Under Monitoring in the firewall settings, select Diagnostic settings
+4.	Select + Add diagnostic setting in the Diagnostic settings.
+5.	In Diagnostics setting, enter or select this information:
+
+ <img src="Images/Azure-Firewall-logs.png" width="800">

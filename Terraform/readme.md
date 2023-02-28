@@ -7,3 +7,5 @@ Pour déployer les ressources du Lab via Terraform:
 6. Déployer les ressources: terraform apply
 
 Pour installer terraform: https://developer.hashicorp.com/terraform/downloads
+
+Continuer le lab à partir du task 2: https://github.com/nadeenAlshibil/Azure-Networking/tree/main#task-2-check-the-deployment

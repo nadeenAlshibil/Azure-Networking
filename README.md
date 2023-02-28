@@ -190,4 +190,28 @@ In this section, you enable the logs on the firewall.
 4.	Select + Add diagnostic setting in the Diagnostic settings.
 5.	In Diagnostics setting, enter or select this information:
 
- <img src="Images/Azure-Firewall-logs.png" width="800">
+ <img src="Images/Azure-Firewall-Logs.png" width="700">
+ 
+ 6.	Select Save.
+ 
+## Exercice 3: Create Azure SQL database with a private endpoint
+
+### Task 1: create a private SQL Database
+
+1.	On the upper-left side of the screen in the Azure portal, select Create a resource > Databases > SQL Database.
+2.	In Create SQL Database - Basics, enter or select this information:
+3.	
+ <img src="Images/Create-sql-database.png" width="500">       <img src="Images/Create-sql-server.png" width="500">
+  
+3.	In the Networking tab leave the default configuration
+4.	In the Security tab, leave the default configuration except for the following:
+
+| Setting	 | Value |
+|------------| ------| 
+|Enable Microsoft Defender for SQL	|Not Now|
+
+5.	Select Review + create. You're taken to the Review + create page where Azure validates your configuration.
+6.	When you see the Validation passed message, select Create.
+
+
+

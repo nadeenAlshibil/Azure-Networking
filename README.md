@@ -21,10 +21,10 @@ Azure Firewall filters traffic using either:
 - FQDN in application rules for HTTP, HTTPS, and MSSQL.
  
 
-### Important
+**Important**
 The use of application rules over network rules is recommended when inspecting traffic destined to private endpoints in order to maintain flow symmetry. If network rules are used, or an NVA is used instead of Azure Firewall, SNAT must be configured for traffic destined to private endpoints.
 
-### Notes
+**Notes**
 1. SQL FQDN filtering is supported in proxy-mode only (port 1433). Proxy mode can result in more latency compared to redirect. If you want to continue using redirect mode, which is the default for clients connecting within Azure, you can filter access using FQDN in firewall network rules.
 2. If you want to secure traffic to private endpoints in Azure Virtual WAN using secured virtual hub, see Secure traffic destined to private endpoints in Azure Virtual WAN.
 
@@ -145,8 +145,18 @@ Check the deployment, you should have a resource group myResourceGroup, three ne
 | Image |	Ubuntu Server 18.04 LTS - Gen1|
 | Size 	|Standard_B2s|
  
-**About outbound access**
-Azure provides a default outbound access IP for VMs that either aren't assigned a public IP address or are in the back-end pool of an internal basic Azure load balancer. The default outbound access IP mechanism provides an outbound IP address that isn't configurable.
-The default outbound access IP is disabled when a public IP address is assigned to the VM, the VM is placed in the back-end pool of a standard load balancer, with or without outbound rules, or if an Azure Virtual Network NAT gateway resource is assigned to the subnet of the VM.
+
+**About outbound access for Azure VMs**
+
+The default outbound access IP mechanism provides an outbound IP address that isn't configurable. Azure provides a default outbound access IP for VMs that:
+- Aren't assigned a public IP address 
+- Are in the back-end pool of an internal basic Azure load balancer. 
+
+The default outbound access IP is disabled when:
+- A public IP address is assigned to the VM
+- The VM is placed in the back-end pool of a standard load balancer (with or without outbound rules)
+- An Azure Virtual Network NAT gateway resource is assigned to the subnet of the VM
+
 VMs that are created by virtual machine scale sets in flexible orchestration mode don't have default outbound access.
+
 For more information about outbound connections in Azure, see Default outbound access in Azure and Use source network address translation (SNAT) for outbound connections.

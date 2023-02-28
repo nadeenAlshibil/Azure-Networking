@@ -158,5 +158,14 @@ The default outbound access IP is disabled when:
 - An Azure Virtual Network NAT gateway resource is assigned to the subnet of the VM
 
 VMs that are created by virtual machine scale sets in flexible orchestration mode don't have default outbound access.
-
 For more information about outbound connections in Azure, see Default outbound access in Azure and Use source network address translation (SNAT) for outbound connections.
+
+## Exercice 2: Deploy Azure Firewall
+
+1.	On the Azure portal menu or from the Home page, select Create a resource.
+2.	Type firewall in the search box and press Enter.
+3.	Select Firewall and then select Create.
+4.	On the Create a Firewall page, use the following table to configure the firewall:
+ 
+ ![image](Images/Create-Azure-Firewall.png)
+ 

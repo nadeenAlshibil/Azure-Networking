@@ -91,3 +91,38 @@ We will be using an Azure CLI script to deploy the networks and the VM:
   2.	Login to the portal & launch the cloud shell:
  
  ![image](Images/Login-to-the-portal.png) 
+ 
+ 3.	List your subscriptions : `az account list –o table`
+
+4.	Set the right the subscription if needed: `az account set ––subscription {id}`
+
+5.	Upload the script via Azure portal:
+
+6.	Move the script under the clouddrive: `mv  1-1-Create-Network.sh  clouddrive/`
+
+7.	Go to the clouddrive:  `cd clouddrive`
+
+8.	Launch the script:  `./1-1-Create-Network.sh`
+
+Check the deployment, you should have a resource group myResourceGroup, three networks and a VM with following parameters: 
+
+**Azure Firewall network**
+
+| Parameter	 | Value |
+|------------| ------|
+| Virtual network name |	myAzFwVNet |
+| Region name |	North Europe |
+| IPv4 address space |	10.0.0.0/16|
+| Subnet name 	|AzureFirewallSubnet|
+| Subnet address range>	|10.0.0.0/24|
+
+**Virtual machine network**
+
+| Parameter	 | Value |
+|------------| ------|
+| Virtual network name |	myVMVNet |
+| Region name |	North Europe |
+| IPv4 address space |	10.1.0.0/16|
+| Subnet name 	|VMSubnet|
+| Subnet address range>	|10.1.0.0/24|
+ 

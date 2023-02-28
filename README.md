@@ -175,7 +175,7 @@ For more information about outbound connections in Azure, see Default outbound a
 3.	Select Firewall and then select Create.
 4.	On the Create a Firewall page, use the following table to configure the firewall:
  
- <img src="Images/Create-Azure-Firewall.png" width="800">
+ <img src="Images/Create-Azure-Firewall.png" width="700">
  
 5.	Select Review + create. You're taken to the Review + create page where Azure validates your configuration.
 6.	When you see the Validation passed message, select Create.
@@ -196,7 +196,7 @@ In this section, you enable the logs on the firewall.
  
 ## Exercice 3: Create Azure SQL database with a private endpoint
 
-### Task 1: create a private SQL Database
+### Task 1: Create the SQL Database 
 
 1.	On the upper-left side of the screen in the Azure portal, select Create a resource > Databases > SQL Database.
 2.	In Create SQL Database - Basics, enter or select this information:
@@ -212,6 +212,23 @@ In this section, you enable the logs on the firewall.
 
 5.	Select Review + create. You're taken to the Review + create page where Azure validates your configuration.
 6.	When you see the Validation passed message, select Create.
+
+### Task 2: Create a private endpoint for your database
+
+In this section, you create a private endpoint for the Azure SQL database in the previous section.
+1.	In the Azure portal, select All resources in the left-hand menu.
+2.	Select the Azure SQL server mydbserver1 in the list of services. If you used a different server name, choose that name.
+3.	In the server Security settings, select Networking , Private access then Create Private endpoint 
+4.	In Create a private endpoint, enter or select this information in the Basics & resource tabs:
+
+
+<img src="Images/Create-PE-1.png" width="500">     <img src="Images/Create-PE-2.png" width="500">
+ 
+
+5. Enter or select this information in the Network & DNS tabs: 
+
+
+ <img src="Images/Create-PE-3.png" width="500">     <img src="Images/Create-PE-4.png" width="500">
 
 
 

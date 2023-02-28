@@ -135,3 +135,13 @@ Check the deployment, you should have a resource group myResourceGroup, three ne
 | IPv4 address space |	10.2.0.0/16|
 | Subnet name 	|PrivateEndpointSubnet|
 | Subnet address range>	|10.2.0.0/24|
+
+**Virtual machine**
+
+| Parameter	 | Value |
+|------------| ------|
+| Virtual MACHINE name |	myVM|
+| Region name |	North Europe |
+| Image |	Ubuntu Server 18.04 LTS - Gen1|
+| Size 	|Standard_B2s|
+ 

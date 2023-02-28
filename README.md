@@ -125,4 +125,13 @@ Check the deployment, you should have a resource group myResourceGroup, three ne
 | IPv4 address space |	10.1.0.0/16|
 | Subnet name 	|VMSubnet|
 | Subnet address range>	|10.1.0.0/24|
- 
+
+**Private endpoint network**
+
+| Parameter	 | Value |
+|------------| ------|
+| Virtual network name |	myPEVNet |
+| Region name |	North Europe |
+| IPv4 address space |	10.2.0.0/16|
+| Subnet name 	|PrivateEndpointSubnet|
+| Subnet address range>	|10.2.0.0/24|

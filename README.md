@@ -289,7 +289,7 @@ Destination type	Select FQDN
 Target FQDNs	Enter mydbserver1.database.windows.net.
 Protocol: Port	Enter mssql:1433.
 
-<img src="Images/Create-AzFW-App-Rule.png" width="500"> 
+<img src="Images/Create-AzFW-App-Rule.png" width="600"> 
 
 	
 6.	Select Add.
@@ -330,7 +330,7 @@ Virtual network	Select myVMVNet.
 Subnet	Select VMSubnet.
 15.	Select OK.
 
-<img src="Images\Create-RT-UDR.png" width="300"> 
+<img src="Images\Create-RT-UDR.png" width="600"> 
 
 ## Exercice 5: Test the connectivity
 

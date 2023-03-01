@@ -329,7 +329,7 @@ Virtual network	Select myVMVNet.
 Subnet	Select VMSubnet.
 15.	Select OK.
 
-<img src="Create-RT-UDR.png" width="500">   
+<img src="Create-RT-UDR.png" width="300">  
 
 ## Exercice 5: Test the connectivity
 

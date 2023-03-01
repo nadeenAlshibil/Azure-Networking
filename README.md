@@ -39,7 +39,7 @@ The administrative overhead of maintaining the route table increases as services
 Depending on your overall architecture, it's possible to run into the 400 routes limit. It's recommended to use scenario 1 whenever possible.
 Connections from a client virtual network to the Azure Firewall in a hub virtual network will incur charges if the virtual networks are peered. Connections from Azure Firewall in a hub virtual network to private endpoints in a peered virtual network are not charged.
 
- <img src="Images/Hub&spoke-shared-Vnet-for-VMs&PEs.png" width="700">
+ <img src="Images/Hub&spoke-shared-Vnet-for-VMs&PEs.png" width="600">
  
  
 For more information on charges related to connections with peered virtual networks, see the FAQ section of the pricing page.
@@ -58,7 +58,7 @@ This architecture can be implemented if you have configured connectivity with yo
 If your security requirements require client traffic to services exposed via private endpoints to be routed through a security appliance, deploy this scenario.
 The same considerations as in scenario 1 above apply. In this scenario, there aren't virtual network peering charges. For more information about how to configure your DNS servers to allow on-premises workloads to access private endpoints, see On-Premises workloads using a DNS forwarder.
 
-<img src="Images/Onpremises-to-PEs.png" width="800">
+<img src="Images/Onpremises-to-PEs.png" width="700">
  
 ## Scenario 4: Hub and spoke architecture - Dedicated virtual network for private endpoints
  
@@ -66,7 +66,7 @@ This scenario is the most expandable architecture to connect privately to multip
 
 Connections from a client virtual network to the Azure Firewall in a hub virtual network will incur charges if the virtual networks are peered. Connections from Azure Firewall in a hub virtual network to private endpoints in a peered virtual network are not charged.
 
-<img src="Images/Hub&spoke-Dedicated-Vnet-for-PEs.png" width="800">
+<img src="Images/Hub&spoke-Dedicated-Vnet-for-PEs.png" width="700">
 
 # LAB :
 In this Lab you will deploy Scenario 4 with a Hub and spoke topology. You’ll create three virtual networks and their corresponding subnets to:

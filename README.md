@@ -247,29 +247,30 @@ In this section, you create a private endpoint for the Azure SQL database in the
 6.	Select the Review + create tab or select Review + create at the bottom of the page.
 7.	Select Create.
 
-### Task 3: Configure an application rule with SQL FQDN in Azure Firewall
+### Task 3: Link the virtual networks to the private DNS zone
 
-In this section, configure an application rule to allow communication between myVM and the private endpoint for SQL Server mydbserver1.database.windows.net.
+In this section, we'll link virtual networks myVMVNet and myAzFwVNet to the privatelink.database.windows.net private DNS zone. This zone was created when we created the private endpoint.
+The link is required for the VM and firewall to resolve the FQDN of database to its private endpoint address. Virtual network myPEVNet was automatically linked when the private endpoint was created.
 
-This rule allows communication through the firewall that we created in the previous steps.
-1.	In the portal's search bar, enter Firewall Policies.
-2.	Select myFirewall-policy 
-3.	Select the Application rules tab.
-4.	Select + Add application rule collection.
-5.	In Add application rule collection enter or select the following information:
+Note
+If you don't link the VM and firewall virtual networks to the private DNS zone, both the VM and firewall will still be able to resolve the SQL Server FQDN. They will resolve to its public IP address.
+1.	In the portal's search bar, enter privatelink.database.
+2.	Select privatelink.database.windows.net in the search results.
+3.	Select Virtual network links under Settings.
+4.	Select + Add
+5.	In Add virtual network link enter or select the following information:
 
 Setting	Value
-Name	Enter SQLPrivateEndpoint.
-Priority	Enter 100.
-Action	Enter Allow.
-Rules	
-Name	Enter SQLPrivateEndpoint.
-Source type	Leave the default IP address.
-Source	Enter 10.1.0.0/16.
-Destination type	Select FQDN
-Target FQDNs	Enter mydbserver1.database.windows.net.
-Protocol: Port	Enter mssql:1433.
-	
-6.	Select Add.
+Link name	Enter Link-to-myVMVNet.
+Virtual network details	
+I know the resource ID of virtual network	Leave unchecked.
+Subscription	Select your subscription.
+Virtual network	Select myVMVNet.
+CONFIGURATION	
+Enable auto registration	Leave unchecked.
+
+6.	Select OK.
+7.	Repeat the same steps for myAzFwVNet virtual network.
+
 
 

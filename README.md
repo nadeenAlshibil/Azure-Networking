@@ -243,6 +243,8 @@ In this section, you create a private endpoint for the Azure SQL database in the
 
 
  <img src="Images/Create-PE-3.png" width="500">     <img src="Images/Create-PE-4.png" width="500">
+6.	Select the Review + create tab or select Review + create at the bottom of the page.
+7.	Select Create.
 
 
 

@@ -175,7 +175,7 @@ In this section, we'll connect virtual networks myVMVNet and myPEVNet to myAzFwV
 2.	Select Peerings under Settings menu and select + Add.
 3.	In Add Peering enter or select the following information:
 
-<img src="Images/Create-peering-1.png" width="400">  <img src="Images/Create-peering-2.png" width="400">
+<img src="Images/Create-peering-1.png" width="400"> ----->  <img src="Images/Create-peering-2.png" width="400">
 
 4.	Select OK.
 5.	Repeat the same steps for the peering with the virtual network myPEVNet
@@ -189,7 +189,7 @@ In this section, we'll connect virtual networks myVMVNet and myPEVNet to myAzFwV
 3.	Select Firewall and then select Create.
 4.	On the Create a Firewall page, use the following table to configure the firewall:
  
- <img src="Images/Create-Azure-Firewall.png" width="700">
+ <img src="Images/Create-Azure-Firewall.png" width="600">
  
 5.	Select Review + create. You're taken to the Review + create page where Azure validates your configuration.
 6.	When you see the Validation passed message, select Create.
@@ -236,13 +236,13 @@ In this section, you create a private endpoint for the Azure SQL database in the
 4.	In Create a private endpoint, enter or select this information in the Basics & resource tabs:
 
 
-<img src="Images/Create-PE-1.png" width="500">     <img src="Images/Create-PE-2.png" width="500">
+<img src="Images/Create-PE-1.png" width="500">  ----->   <img src="Images/Create-PE-2.png" width="500">
  
 
 5. Enter or select this information in the Network & DNS tabs: 
 
 
- <img src="Images/Create-PE-3.png" width="500">     <img src="Images/Create-PE-4.png" width="500">
+ <img src="Images/Create-PE-3.png" width="500">  ----->    <img src="Images/Create-PE-4.png" width="500">
  
 6.	Select the Review + create tab or select Review + create at the bottom of the page.
 7.	Select Create.

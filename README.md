@@ -236,13 +236,13 @@ In this section, you create a private endpoint for the Azure SQL database in the
 4.	In Create a private endpoint, enter or select this information in the Basics & resource tabs:
 
 
-<img src="Images/Create-PE-1.png" width="500">  ----->   <img src="Images/Create-PE-2.png" width="500">
+<img src="Images/Create-PE-1.png" width="450">  --->   <img src="Images/Create-PE-2.png" width="450">
  
 
 5. Enter or select this information in the Network & DNS tabs: 
 
 
- <img src="Images/Create-PE-3.png" width="500">  ----->    <img src="Images/Create-PE-4.png" width="500">
+ <img src="Images/Create-PE-3.png" width="450">  --->    <img src="Images/Create-PE-4.png" width="450">
  
 6.	Select the Review + create tab or select Review + create at the bottom of the page.
 7.	Select Create.
@@ -266,5 +266,66 @@ If you don't link the VM and firewall virtual networks to the private DNS zone, 
 6.	Select OK.
 7.	Repeat the same steps for **myAzFwVNet** virtual network.
 
+## Exercice 4 : Configure the connectivity through Azure Firewall
+
+### Task 1: Configure an application rule with SQL FQDN in Azure Firewall
+
+In this section, configure an application rule to allow communication between myVM and the private endpoint for SQL Server mydbserver1.database.windows.net.
+This rule allows communication through the firewall that we created in the previous steps.
+1.	In the portal's search bar, enter Firewall Policies.
+2.	Select myFirewall-policy 
+3.	Select the Application rules tab.
+4.	Select + Add application rule collection.
+5.	In Add application rule collection enter or select the following information:
+Setting	Value
+Name	Enter SQLPrivateEndpoint.
+Priority	Enter 100.
+Action	Enter Allow.
+Rules	
+Name	Enter SQLPrivateEndpoint.
+Source type	Leave the default IP address.
+Source	Enter 10.1.0.0/16.
+Destination type	Select FQDN
+Target FQDNs	Enter mydbserver1.database.windows.net.
+Protocol: Port	Enter mssql:1433.
+	
+	
+6.	Select Add.
+
+### Task 2: Route traffic between the virtual machine and private endpoint through Azure Firewall
+
+We didn't create a virtual network peering directly between virtual networks myVMVNet and myPEVNet. The virtual machine myVM doesn't have a route to the private endpoint we created. 
+In this section, we'll create a route table with a custom route. The route sends traffic from the myVM subnet to the address space of virtual network myPEVNet, through the Azure Firewall.
+1.	On the Azure portal menu or from the Home page, select Create a resource.
+2.	Type route table in the search box and press Enter.
+3.	Select Route table and then select Create.
+4.	On the Create Route table page, use the following table to configure the route table:
+Setting	Value
+Project details	
+Subscription	Select your subscription.
+Resource group	Select myResourceGroup.
+Instance details	
+Region	Select North Europe.
+Name	Enter VMsubnet-to-AzureFirewall.
+Propagate gateway routes	Select No.
+5.	Select Review + create. You're taken to the Review + create page where Azure validates your configuration.
+6.	When you see the Validation passed message, select Create.
+7.	Once the deployment completes select Go to resource.
+8.	Select Routes under Settings.
+9.	Select + Add.
+10.	On the Add route page, enter, or select this information:
+Setting	Value
+Route name	Enter myVMsubnet-to-privateendpoint.
+Address prefix	Enter 10.2.0.0/16.
+Next hop type	Select Virtual appliance.
+Next hop address	Enter 10.0.0.4.
+11.	Select OK.
+12.	Select Subnets under Settings.
+13.	Select + Associate.
+14.	On the Associate subnet page, enter or select this information:
+Setting	Value
+Virtual network	Select myVMVNet.
+Subnet	Select VMSubnet.
+15.	Select OK.
 
 

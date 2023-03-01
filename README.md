@@ -277,18 +277,20 @@ This rule allows communication through the firewall that we created in the previ
 3.	Select the Application rules tab.
 4.	Select + Add application rule collection.
 5.	In Add application rule collection enter or select the following information:
-Setting	Value
-Name	Enter SQLPrivateEndpoint.
-Priority	Enter 100.
-Action	Enter Allow.
-Rules	
-Name	Enter SQLPrivateEndpoint.
-Source type	Leave the default IP address.
-Source	Enter 10.1.0.0/16.
-Destination type	Select FQDN
-Target FQDNs	Enter mydbserver1.database.windows.net.
-Protocol: Port	Enter mssql:1433.
 
+| Setting	 | Value |
+|------------| ------| 
+|Name|SQLPrivateEndpoint|
+|Priority|100|
+|Action|Allow|
+|Rules| |
+|Name|SQLPrivateEndpoint|
+|Source type|Leave the default IP address|
+|Source|10.1.0.0/16|
+|Destination type|FQDN|
+|Target FQDNs|mydbserver1.database.windows.net|
+|Protocol: Port|mssql:1433|
+	 
 <img src="Images/Create-AzFW-App-Rule.png" width="600"> 
 
 	
@@ -302,6 +304,7 @@ In this section, we'll create a route table with a custom route. The route sends
 2.	Type route table in the search box and press Enter.
 3.	Select Route table and then select Create.
 4.	On the Create Route table page, use the following table to configure the route table:
+
 Setting	Value
 Project details	
 Subscription	Select your subscription.

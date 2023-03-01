@@ -175,7 +175,7 @@ In this section, we'll connect virtual networks myVMVNet and myPEVNet to myAzFwV
 2.	Select Peerings under Settings menu and select + Add.
 3.	In Add Peering enter or select the following information:
 
-<img src="Images/Create-peering-1.png" width="500">  <img src="Images/Create-peering-2.png" width="500">
+<img src="Images/Create-peering-1.png" width="400">  <img src="Images/Create-peering-2.png" width="400">
 
 4.	Select OK.
 5.	Repeat the same steps for the peering with the virtual network myPEVNet
@@ -204,7 +204,7 @@ In this section, you enable the logs on the firewall.
 4.	Select + Add diagnostic setting in the Diagnostic settings.
 5.	In Diagnostics setting, enter or select this information:
 
- <img src="Images/Azure-Firewall-Logs.png" width="700">
+ <img src="Images/Azure-Firewall-Logs.png" width="600">
  
  6.	Select Save.
  
@@ -215,7 +215,7 @@ In this section, you enable the logs on the firewall.
 1.	On the upper-left side of the screen in the Azure portal, select Create a resource > Databases > SQL Database.
 2.	In Create SQL Database - Basics, enter or select this information:
 3.	
- <img src="Images/Create-sql-database.png" width="500">       <img src="Images/Create-sql-server.png" width="500">
+ <img src="Images/Create-sql-database.png" width="500">       <img src="Images/Create-sql-server.png" width="400">
   
 3.	In the Networking tab leave the default configuration
 4.	In the Security tab, leave the default configuration except for the following:

@@ -167,6 +167,20 @@ The default outbound access IP is disabled when:
 VMs that are created by virtual machine scale sets in flexible orchestration mode don't have default outbound access.
 For more information about outbound connections in Azure, see Default outbound access in Azure and Use source network address translation (SNAT) for outbound connections.
 
+### task 3: Connect the virtual networks using virtual network peering
+
+In this section, we'll connect virtual networks myVMVNet and myPEVNet to myAzFwVNet using peering in a hub and spoke topology. There won't be direct connectivity between myVMVNet and myPEVNet. 
+
+1.	In the portal's search bar, enter myAzFwVNet.
+2.	Select Peerings under Settings menu and select + Add.
+3.	In Add Peering enter or select the following information:
+
+<img src="Images/Create-peering-1.png" width="500">  <img src="Images/Create-peering-2.png" width="500">
+
+4.	Select OK.
+5.	Repeat the same steps for the peering with the virtual network myPEVNet
+
+
 ## Exercice 2: Deploy Azure Firewall
 
 ### Task 1: Create the resource
@@ -229,6 +243,34 @@ In this section, you create a private endpoint for the Azure SQL database in the
 
 
  <img src="Images/Create-PE-3.png" width="500">     <img src="Images/Create-PE-4.png" width="500">
+ 
+6.	Select the Review + create tab or select Review + create at the bottom of the page.
+7.	Select Create.
+
+### Task 3: Link the virtual networks to the private DNS zone
+
+In this section, we'll link virtual networks myVMVNet and myAzFwVNet to the privatelink.database.windows.net private DNS zone. This zone was created when we created the private endpoint.
+The link is required for the VM and firewall to resolve the FQDN of database to its private endpoint address. Virtual network myPEVNet was automatically linked when the private endpoint was created.
+
+Note
+If you don't link the VM and firewall virtual networks to the private DNS zone, both the VM and firewall will still be able to resolve the SQL Server FQDN. They will resolve to its public IP address.
+1.	In the portal's search bar, enter privatelink.database.
+2.	Select privatelink.database.windows.net in the search results.
+3.	Select Virtual network links under Settings.
+4.	Select + Add
+5.	In Add virtual network link enter or select the following information:
+
+Setting	Value
+Link name	Enter Link-to-myVMVNet.
+Virtual network details	
+I know the resource ID of virtual network	Leave unchecked.
+Subscription	Select your subscription.
+Virtual network	Select myVMVNet.
+CONFIGURATION	
+Enable auto registration	Leave unchecked.
+
+6.	Select OK.
+7.	Repeat the same steps for myAzFwVNet virtual network.
 
 
 

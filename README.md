@@ -283,7 +283,7 @@ This rule allows communication through the firewall that we created in the previ
 |Name|SQLPrivateEndpoint|
 |Priority|100|
 |Action|Allow|
-|Rules| |
+|**Rules**| |
 |Name|SQLPrivateEndpoint|
 |Source type|Leave the default IP address|
 |Source|10.1.0.0/16|
@@ -305,14 +305,16 @@ In this section, we'll create a route table with a custom route. The route sends
 3.	Select Route table and then select Create.
 4.	On the Create Route table page, use the following table to configure the route table:
 
-Setting	Value
-Project details	
-Subscription	Select your subscription.
-Resource group	Select myResourceGroup.
-Instance details	
-Region	Select North Europe.
-Name	Enter VMsubnet-to-AzureFirewall.
-Propagate gateway routes	Select No.
+| Setting	 | Value |
+|------------| ------| 
+|Subscription|your subscription|
+|Resource group|myResourceGroup|
+|**Instance details**| |
+|Region|North Europe|
+|Name type|VMsubnet-to-AzureFirewall|
+|Propagate gateway routes|No|
+ 
+  
 5.	Select Review + create. You're taken to the Review + create page where Azure validates your configuration.
 6.	When you see the Validation passed message, select Create.
 7.	Once the deployment completes select Go to resource.

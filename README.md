@@ -321,11 +321,14 @@ In this section, we'll create a route table with a custom route. The route sends
 8.	Select Routes under Settings.
 9.	Select + Add.
 10.	On the Add route page, enter, or select this information:
-Setting	Value
-Route name	Enter myVMsubnet-to-privateendpoint.
-Address prefix	Enter 10.2.0.0/16.
-Next hop type	Select Virtual appliance.
-Next hop address	Enter 10.0.0.4.
+
+| Setting	 | Value |
+|------------| ------| 
+|Route name|myVMsubnet-to-privateendpoint|
+|Address prefix|10.2.0.0/16|
+|Next hop type|Virtual appliance|
+|Next hop address|10.0.0.4|
+
 11.	Select OK.
 12.	Select Subnets under Settings.
 13.	Select + Associate.

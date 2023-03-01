@@ -243,8 +243,33 @@ In this section, you create a private endpoint for the Azure SQL database in the
 
 
  <img src="Images/Create-PE-3.png" width="500">     <img src="Images/Create-PE-4.png" width="500">
+ 
 6.	Select the Review + create tab or select Review + create at the bottom of the page.
 7.	Select Create.
 
+### Task 3: Configure an application rule with SQL FQDN in Azure Firewall
+
+In this section, configure an application rule to allow communication between myVM and the private endpoint for SQL Server mydbserver1.database.windows.net.
+
+This rule allows communication through the firewall that we created in the previous steps.
+1.	In the portal's search bar, enter Firewall Policies.
+2.	Select myFirewall-policy 
+3.	Select the Application rules tab.
+4.	Select + Add application rule collection.
+5.	In Add application rule collection enter or select the following information:
+
+Setting	Value
+Name	Enter SQLPrivateEndpoint.
+Priority	Enter 100.
+Action	Enter Allow.
+Rules	
+Name	Enter SQLPrivateEndpoint.
+Source type	Leave the default IP address.
+Source	Enter 10.1.0.0/16.
+Destination type	Select FQDN
+Target FQDNs	Enter mydbserver1.database.windows.net.
+Protocol: Port	Enter mssql:1433.
+	
+6.	Select Add.
 
 

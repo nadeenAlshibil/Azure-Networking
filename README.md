@@ -273,7 +273,7 @@ If you don't link the VM and firewall virtual networks to the private DNS zone, 
 In this section, configure an application rule to allow communication between myVM and the private endpoint for SQL Server mydbserver1.database.windows.net.
 This rule allows communication through the firewall that we created in the previous steps.
 1.	In the portal's search bar, enter Firewall Policies.
-2.	Select myFirewall-policy 
+2.	Select **myFirewall-policy** 
 3.	Select the Application rules tab.
 4.	Select + Add application rule collection.
 5.	In Add application rule collection enter or select the following information:
@@ -328,39 +328,7 @@ Virtual network	Select myVMVNet.
 Subnet	Select VMSubnet.
 15.	Select OK.
 
-## Exercice 5: Test teh connectivity
+## Exercice 5: Test the connectivity
 
-### Task 1: Access SQL Server privately from the virtual machine
+### Task 1: Connect to the virtual machine from your client computer
 
-In this section, you'll connect privately to the SQL Database using the private endpoint.
-1.	Enter nslookup mydbserver1.database.windows.net
-You'll receive a message similar to below:
-Server:         127.0.0.53
-Address:        127.0.0.53#53
-
-Non-authoritative answer:
-mydbserver1.database.windows.net       canonical name = mydbserve1r.privatelink.database.windows.net.
-Name:   mydbserver.privatelink.database.windows.net
-Address: 10.2.0.4
-2.	Install SQL Server command-line tools:
-Use the following steps to install the mssql-tools on Ubuntu. If curl isn't installed, you can run this code:
-sudo apt-get update
-sudo apt install curl
-a.	Import the public repository GPG keys.
-curl https://packages.microsoft.com/keys/microsoft.asc | sudo tee /etc/apt/trusted.gpg.d/microsoft.asc
-b.	Register the Ubuntu repository.
-curl https://packages.microsoft.com/config/ubuntu/20.04/prod.list | sudo tee /etc/apt/sources.list.d/msprod.list
-c.	Update the sources list and run the installation command with the unixODBC developer package. For more information, see Install the Microsoft ODBC driver for SQL Server (Linux)
-sudo apt-get update
-sudo apt-get install mssql-tools unixodbc-dev
-For convenience, add /opt/mssql-tools/bin/ to your PATH environment variable, to make sqlcmd or bcp accessible from the bash shell. For non-interactive sessions, modify the PATH environment variable in your ~/.bashrc file with the following command:
-echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc
-source ~/.bashrc
-
-3.	Run the following command to connect to the SQL Server. Use the server admin and password you defined when you created the SQL Server in the previous steps.
-•	Replace <ServerAdmin> and <YourPassword>  with the admin username and the admin password you entered during the SQL server creation.  
-sqlcmd -S mydbserver1.database.windows.net -U '<ServerAdmin>' -P '<YourPassword>'
-4.	A SQL command prompt will be displayed on successful login. Enter exit to exit the sqlcmd tool.
-5.	Close the connection to myVM by entering exit.	
-	
-### Task 2: 

@@ -261,7 +261,7 @@ If you don't link the VM and firewall virtual networks to the private DNS zone, 
 4.	Select + Add
 5.	In Add virtual network link enter or select the following information:
 
- <img src="Images/Link-DNS-private-zone.png" width="500">  
+ <img src="Images/Link-DNS-private-zone.png" width="500">   
 
 6.	Select OK.
 7.	Repeat the same steps for **myAzFwVNet** virtual network.
@@ -288,7 +288,8 @@ Source	Enter 10.1.0.0/16.
 Destination type	Select FQDN
 Target FQDNs	Enter mydbserver1.database.windows.net.
 Protocol: Port	Enter mssql:1433.
-	
+
+ <img src="Images/Create-AzFW-App-Rule.png" width="500">    
 	
 6.	Select Add.
 
@@ -327,6 +328,8 @@ Setting	Value
 Virtual network	Select myVMVNet.
 Subnet	Select VMSubnet.
 15.	Select OK.
+
+<img src="Create-RT-UDR.png" width="500">   
 
 ## Exercice 5: Test the connectivity
 

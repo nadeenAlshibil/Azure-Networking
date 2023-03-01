@@ -254,23 +254,17 @@ The link is required for the VM and firewall to resolve the FQDN of database to 
 
 Note
 If you don't link the VM and firewall virtual networks to the private DNS zone, both the VM and firewall will still be able to resolve the SQL Server FQDN. They will resolve to its public IP address.
+
 1.	In the portal's search bar, enter privatelink.database.
-2.	Select privatelink.database.windows.net in the search results.
+2.	Select **privatelink.database.windows.net** in the search results.
 3.	Select Virtual network links under Settings.
 4.	Select + Add
 5.	In Add virtual network link enter or select the following information:
 
-Setting	Value
-Link name	Enter Link-to-myVMVNet.
-Virtual network details	
-I know the resource ID of virtual network	Leave unchecked.
-Subscription	Select your subscription.
-Virtual network	Select myVMVNet.
-CONFIGURATION	
-Enable auto registration	Leave unchecked.
+ <img src="Images/Link-DNS-private-zone.png" width="500">  
 
 6.	Select OK.
-7.	Repeat the same steps for myAzFwVNet virtual network.
+7.	Repeat the same steps for **myAzFwVNet** virtual network.
 
 
 

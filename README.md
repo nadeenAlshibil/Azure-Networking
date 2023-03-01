@@ -362,3 +362,5 @@ source ~/.bashrc
 sqlcmd -S mydbserver1.database.windows.net -U '<ServerAdmin>' -P '<YourPassword>'
 4.	A SQL command prompt will be displayed on successful login. Enter exit to exit the sqlcmd tool.
 5.	Close the connection to myVM by entering exit.	
+	
+### Task 2: 

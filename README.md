@@ -167,6 +167,20 @@ The default outbound access IP is disabled when:
 VMs that are created by virtual machine scale sets in flexible orchestration mode don't have default outbound access.
 For more information about outbound connections in Azure, see Default outbound access in Azure and Use source network address translation (SNAT) for outbound connections.
 
+### task 3: Connect the virtual networks using virtual network peering
+
+In this section, we'll connect virtual networks myVMVNet and myPEVNet to myAzFwVNet using peering in a hub and spoke topology. There won't be direct connectivity between myVMVNet and myPEVNet. 
+
+1.	In the portal's search bar, enter myAzFwVNet.
+2.	Select Peerings under Settings menu and select + Add.
+3.	In Add Peering enter or select the following information:
+
+<img src="Images/Create-peering-1.png" width="500">  <img src="Images/Create-peering-2.png" width="500">
+
+4.	Select OK.
+5.	Repeat the same steps for the peering with the virtual network myPEVNet
+
+
 ## Exercice 2: Deploy Azure Firewall
 
 ### Task 1: Create the resource

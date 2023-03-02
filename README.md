@@ -423,10 +423,18 @@ source ~/.bashrc`
 4.	In the Example queries window, select Firewalls under All Queries.
 5.	Select the Run button under Application rule log data.
 6.	In the log query output, verify **mydbserver1.database.windows.net** is listed under FQDN and SQLPrivateEndpoint is listed under RuleCollection. 
-	Example:
+
+	
+<img src="Images\LA-logs-query.png" width="600"> 
 	
 ### Task 2: Use Azure workbook
 1. Go to [Azure Monitor Workbook for Azure Firewall](https://github.com/Azure/Azure-Network-Security/tree/master/Azure%20Firewall/Workbook%20-%20Azure%20Firewall%20Monitor%20Workbook) and following the instructions on the page
-	
-	
+
+## Clean up resources
+
+When you're done using the resources, delete the resource group and all of the resources it contains:
+1.	Enter **myResourceGroup** in the Search box at the top of the portal and select **myResourceGroup** from the search results.
+2.	Select Delete resource group.
+3.	Enter myResourceGroup for **TYPE THE RESOURCE GROUP NAME** and select Delete.
+
 	

@@ -368,13 +368,15 @@ In this section, you'll connect privately to the SQL Database using the private 
 1.	Enter **nslookup mydbserver1.database.windows.net**
 You'll receive a message similar to below:
 
-`Server:         127.0.0.53
+```
+Server:         127.0.0.53
 Address:        127.0.0.53#53
 
 Non-authoritative answer:
 mydbserver1.database.windows.net       canonical name = mydbserve1r.privatelink.database.windows.net.
 Name:   mydbserver.privatelink.database.windows.net
-Address: 10.2.0.4`
+Address: 10.2.0.4
+```
 
 2.	Install SQL Server command-line tools:
 Use the following steps to install the mssql-tools on Ubuntu. If curl isn't installed, you can run this code:
@@ -411,4 +413,20 @@ source ~/.bashrc`
 4.	A SQL command prompt will be displayed on successful login. Enter exit to exit the sqlcmd tool.
 5.	Close the connection to myVM by entering exit.
 
+## Exercice 6: Validate Azure firewall logs:
 
+### Task 1: Use Log Analytics queries:
+
+1.	In the Azure portal, select All Resources and select your Log Analytics workspace.
+2.	Select Logs under General in the Log Analytics workspace page.
+3.	Select the blue Get Started button.
+4.	In the Example queries window, select Firewalls under All Queries.
+5.	Select the Run button under Application rule log data.
+6.	In the log query output, verify **mydbserver1.database.windows.net** is listed under FQDN and SQLPrivateEndpoint is listed under RuleCollection. 
+	Example:
+	
+### Task 2: Use Azure workbook
+1. Go to [Azure Monitor Workbook for Azure Firewall](https://github.com/Azure/Azure-Network-Security/tree/master/Azure%20Firewall/Workbook%20-%20Azure%20Firewall%20Monitor%20Workbook) and following the instructions on the page
+	
+	
+	

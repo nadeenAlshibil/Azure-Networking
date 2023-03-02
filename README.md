@@ -87,9 +87,13 @@ See, Create a Log Analytics workspace in the Azure portal to create a workspace 
 ### Task 1: Create resources
 In this section, you'll create a virtual network and subnet to host the VM used to access your private link resource. An Azure SQL database is used later as the example service.
 
-We will be using an Azure CLI script to deploy the networks and the VM:
+We will be using an Azure CLI script to deploy the networks and the VM.
+
+If you prefer to use Terraform to deploy the lab resources go here: https://github.com/nadeenAlshibil/Azure-Networking/blob/main/Terraform/readme.md 
+
+Otherwise keep reading. 
   
-  1.	Download the script here: https://aka.ms/AzureNetworksLab
+  1.	Download the az cli script here: https://aka.ms/AzureNetworksLab
   2.	Login to the portal & launch the cloud shell:
  
  ![image](Images/Login-to-the-portal.png) 

@@ -348,3 +348,85 @@ Subnet	Select VMSubnet.
 
 ### Task 1: Connect to the virtual machine from your client computer
 
+Connect to the VM myVm from the internet as follows:
+
+1.	In the portal's search bar, enter **myVm-ip**
+2.	Select **myVm-ip** in the search results.
+3.	Copy or write down the value under IP address.
+4.	If you're using Windows 10, run the following command using PowerShell. For other Windows client versions, use an SSH client like Putty:
+•	Replace username with the admin username you entered during VM creation.
+•	Replace IPaddress with the IP address from the previous step.
+
+`ssh username@IPaddress`
+
+5.	Enter the password you defined when creating myVm
+
+### Task 2: Access SQL Server privately from the virtual machine
+
+In this section, you'll connect privately to the SQL Database using the private endpoint.
+
+1.	Enter **nslookup mydbserver1.database.windows.net**
+You'll receive a message similar to below:
+
+```
+Server:         127.0.0.53
+Address:        127.0.0.53#53
+
+Non-authoritative answer:
+mydbserver1.database.windows.net       canonical name = mydbserve1r.privatelink.database.windows.net.
+Name:   mydbserver.privatelink.database.windows.net
+Address: 10.2.0.4
+```
+
+2.	Install SQL Server command-line tools:
+Use the following steps to install the mssql-tools on Ubuntu. If curl isn't installed, you can run this code:
+
+`sudo apt-get update`
+
+`sudo apt install curl`
+
+a.	Import the public repository GPG keys.
+
+`curl https://packages.microsoft.com/keys/microsoft.asc | sudo tee /etc/apt/trusted.gpg.d/microsoft.asc`
+
+b.	Register the Ubuntu repository.
+
+`curl https://packages.microsoft.com/config/ubuntu/20.04/prod.list | sudo tee /etc/apt/sources.list.d/msprod.list`
+
+c.	Update the sources list and run the installation command with the unixODBC developer package. For more information, see Install the Microsoft ODBC driver for 
+Install the Microsoft ODBC driver for SQL Server (Linux)
+
+`SQL Server (Linux)
+sudo apt-get update
+sudo apt-get install mssql-tools unixodbc-dev`
+
+For convenience, add **/opt/mssql-tools/bin/** to your PATH environment variable, to make sqlcmd or bcp accessible from the bash shell. For non-interactive sessions, modify the PATH environment variable in your **~/.bashrc** file with the following command:
+
+`echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc
+source ~/.bashrc`
+
+3.	Run the following command to connect to the SQL Server. Use the server admin and password you defined when you created the SQL Server in the previous steps.
+•	Replace <ServerAdmin> and <YourPassword>  with the admin username and the admin password you entered during the SQL server creation.  
+
+	`sqlcmd -S mydbserver1.database.windows.net -U '<ServerAdmin>' -P '<YourPassword>'`
+
+4.	A SQL command prompt will be displayed on successful login. Enter exit to exit the sqlcmd tool.
+5.	Close the connection to myVM by entering exit.
+
+## Exercice 6: Validate Azure firewall logs:
+
+### Task 1: Use Log Analytics queries:
+
+1.	In the Azure portal, select All Resources and select your Log Analytics workspace.
+2.	Select Logs under General in the Log Analytics workspace page.
+3.	Select the blue Get Started button.
+4.	In the Example queries window, select Firewalls under All Queries.
+5.	Select the Run button under Application rule log data.
+6.	In the log query output, verify **mydbserver1.database.windows.net** is listed under FQDN and SQLPrivateEndpoint is listed under RuleCollection. 
+	Example:
+	
+### Task 2: Use Azure workbook
+1. Go to [Azure Monitor Workbook for Azure Firewall](https://github.com/Azure/Azure-Network-Security/tree/master/Azure%20Firewall/Workbook%20-%20Azure%20Firewall%20Monitor%20Workbook) and following the instructions on the page
+	
+	
+	

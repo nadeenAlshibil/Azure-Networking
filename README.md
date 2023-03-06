@@ -11,6 +11,9 @@ Access to the private endpoint through virtual network peering and on-premises n
 You may need to inspect or block traffic from clients to the services exposed via private endpoints. Complete this inspection by using Azure Firewall or a third-party network virtual appliance.
 
 The following limitations apply:
+- Private Endpoint supports **TCP** and **UDP** traffic only. See [Private Endpoint FAQ](https://learn.microsoft.com/en-us/azure/private-link/private-link-faq#do-private-endpoints-support-icmp-traffic-)
+- Private Endpoint do not support NSG flow logs. It means that Traffic Analysis do not work. See [Doc](https://learn.microsoft.com/en-us/azure/network-watcher/network-watcher-nsg-flow-logging-overview#traffic-across-a-private-link).
+- Private endpoint automatically creates a /32 route propagated to the VNet it resides in and other peered VNets. [Details](https://msandbu.org/private-endpoints-snat-udr-and-azure-firewall/).
 - Network security groups (NSG) are bypassed by traffic coming from private endpoints
 - User-defined routes (UDR) are bypassed by traffic coming from private endpoints. User-defined routes can be used to override 	traffic destined for the private endpoint.
 - A single route table can be attached to a subnet

@@ -389,17 +389,12 @@ In this section, we'll create a route table with a custom route. The route sends
 ### Task 1: Connect to the virtual machine from your client computer
 
 Connect to the VM myVm from the internet as follows:
+1.	In the portal's search bar, enter **myVm**.
+2.	Select the VM myVM in the search results.
+3.	Go to **Connect > Batsion**
+•	Replace username with **azureadmin**
+•	Enter the password you defined when creating myVm
 
-1.	In the portal's search bar, enter **myVm-ip**
-2.	Select **myVm-ip** in the search results.
-3.	Copy or write down the value under IP address.
-4.	If you're using Windows 10, run the following command using PowerShell. For other Windows client versions, use an SSH client like [Putty](https://www.putty.org/):
-•	Replace username with the admin username you entered during VM creation.
-•	Replace IPaddress with the IP address from the previous step.
-
-`ssh username@IPaddress`
-
-5.	Enter the password you defined when creating myVm
 
 ### Task 2: Access SQL Server privately from the virtual machine
 

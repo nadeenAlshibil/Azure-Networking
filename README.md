@@ -98,13 +98,16 @@ In this section, you'll create a virtual network and subnet to host the VM used 
 
 We will be using an Azure CLI script to deploy the networks and the VM.
 
-If you prefer to use Terraform to deploy the lab resources go here: https://github.com/nadeenAlshibil/Azure-Networking/blob/main/Terraform/readme.md 
+If you prefer to use Terraform to deploy the lab resources go [here !!](https://github.com/nadeenAlshibil/Azure-Networking/blob/main/Terraform/readme.md) 
 
 Otherwise keep reading. 
   
-  1.	Download the Lab content here: https://aka.ms/AzureNetworksLab
-  2.	Unzip the folder and locate the initial deployment script: **1-1-Initial-Deployment.sh**
-  3.	Login to the portal & launch the cloud shell:
+  1.	Download the Lab content:
+  
+  <img src="Images/Clone-or-Download-Content.png" width="250"> 
+ 
+  3.	Unzip the folder and locate the initial deployment script: **1-1-Initial-Deployment.sh** Under Scripts.
+  4.	Login to the portal & launch the cloud shell:
  
  ![image](Images/Login-to-the-portal.png) 
  

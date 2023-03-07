@@ -29,8 +29,8 @@ Azure Firewall filters traffic using either:
 The use of application rules over network rules is recommended when inspecting traffic destined to private endpoints in order to maintain flow symmetry. If network rules are used (because other protocols than HTTP, HTTPS and MSSQL are needed), SNAT must be configured for traffic destined to private endpoints. To do so, configure Private IP ranges (SNAT) in Azure Firewall Policy to include Private Endpoints vnet in addresses that require SNAT. SNAT is also needed if an NVA is used instead of Azure Firewall.
 
 **Notes**
-1. SQL FQDN filtering is supported in proxy-mode only (port 1433). Proxy mode can result in more latency compared to redirect. If you want to continue using redirect mode, which is the default for clients connecting within Azure, you can filter access using FQDN in firewall network rules.
-2. If you want to secure traffic to private endpoints in Azure Virtual WAN using secured virtual hub, see Secure traffic destined to private endpoints in Azure Virtual WAN.
+1. SQL FQDN filtering is supported in proxy-mode only (port 1433). [Proxy mode](https://learn.microsoft.com/en-us/azure/azure-sql/database/connectivity-architecture#connection-policy) can result in more latency compared to redirect. If you want to continue using redirect mode, which is the default for clients connecting within Azure, you can filter access using FQDN in firewall network rules.
+2. If you want to secure traffic to private endpoints in Azure Virtual WAN using secured virtual hub, see [Secure traffic destined to private endpoints in Azure Virtual WAN](https://learn.microsoft.com/en-us/azure/firewall-manager/private-link-inspection-secure-virtual-hub).
 
 
 ## Scenario 1: Hub and spoke architecture - Shared virtual network for private endpoints and virtual machines

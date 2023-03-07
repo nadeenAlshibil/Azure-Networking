@@ -431,9 +431,11 @@ b.	Register the Ubuntu repository.
 c.	Update the sources list and run the installation command with the unixODBC developer package. For more information, see [Install the Microsoft ODBC driver for 
 Install the Microsoft ODBC driver for SQL Server (Linux)](https://learn.microsoft.com/en-us/sql/connect/odbc/linux-mac/installing-the-microsoft-odbc-driver-for-sql-server?view=sql-server-ver16)
 
-`SQL Server (Linux)
+```
 sudo apt-get update
-sudo apt-get install mssql-tools unixodbc-dev`
+
+sudo apt-get install mssql-tools unixodbc-dev
+```
 
 For convenience, add **/opt/mssql-tools/bin/** to your PATH environment variable, to make sqlcmd or bcp accessible from the bash shell. For non-interactive sessions, modify the PATH environment variable in your **~/.bashrc** file with the following command:
 

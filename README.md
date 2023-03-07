@@ -102,15 +102,16 @@ If you prefer to use Terraform to deploy the lab resources go here: https://gith
 
 Otherwise keep reading. 
   
-  1.	Download the az cli script here: https://aka.ms/AzureNetworksLab
-  2.	Login to the portal & launch the cloud shell:
+  1.	Download the Lab content here: https://aka.ms/AzureNetworksLab
+  2.	Unzip the folder and locate the initial deployment script: **1-1-Initial-Deployment.sh**
+  3.	Login to the portal & launch the cloud shell:
  
  ![image](Images/Login-to-the-portal.png) 
  
  3.	List your subscriptions : `az account list –o table`
  4.	Set the right the subscription if needed: `az account set ––subscription {id}`
  5.	Upload the script via Azure portal
- 6.	Move the script under the clouddrive: `mv  1-1-Create-Network.sh  clouddrive/`
+ 6.	Move the script under the clouddrive: `mv  1-1-Initial-Deployment.sh  clouddrive/`
  7.	Go to the clouddrive:  `cd clouddrive`
  8.	Launch the script:  `./1-1-Create-Network.sh`
 

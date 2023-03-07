@@ -123,10 +123,13 @@ Otherwise keep reading.
  
  3.	List your subscriptions : `az account list –o table`
  4.	Set the right the subscription if needed: `az account set ––subscription {id}`
- 5.	Upload the script via Azure portal
- 6.	Move the script under the clouddrive: `mv  1-1-Initial-Deployment.sh  clouddrive/`
- 7.	Go to the clouddrive:  `cd clouddrive`
- 8.	Launch the script:  `./1-1-Create-Network.sh`
+ 5.	Upload the script via Azure portal:
+ 
+  <img src="Images/Upload-script.png" width="200"> 
+ 
+ 7.	Move the script under the clouddrive: `mv  1-1-Initial-Deployment.sh  clouddrive/`
+ 8.	Go to the clouddrive:  `cd clouddrive`
+ 9.	Launch the script:  `./1-1-Create-Network.sh`
 
 ### Task 2: Check the deployment
 

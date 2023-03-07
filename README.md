@@ -33,7 +33,14 @@ The use of application rules over network rules is recommended when inspecting t
 2. If you want to secure traffic to private endpoints in Azure Virtual WAN using secured virtual hub, see [Secure traffic destined to private endpoints in Azure Virtual WAN](https://learn.microsoft.com/en-us/azure/firewall-manager/private-link-inspection-secure-virtual-hub).
 
 
-## Scenario 1: Hub and spoke architecture - Shared virtual network for private endpoints and virtual machines
+## Scenario 1: Single virtual network
+ 
+Use this pattern when a migration to a hub and spoke architecture isn't possible. The same considerations as in scenario 2 apply. In this scenario, virtual network peering charges don't apply.
+
+<img src="Images/Single-Vnet.png" width="500">
+
+
+## Scenario 2: Hub and spoke architecture - Shared virtual network for private endpoints and virtual machines
  
 This scenario is implemented when:
 - It's not possible to have a dedicated virtual network for the private endpoints
@@ -48,12 +55,7 @@ Connections from a client virtual network to the Azure Firewall in a hub virtual
  
 For more information on charges related to connections with peered virtual networks, see the FAQ section of the [pricing page](https://azure.microsoft.com/pricing/details/private-link/).
 
-## Scenario 2: Single virtual network
- 
-Use this pattern when a migration to a hub and spoke architecture isn't possible. The same considerations as in scenario 2 apply. In this scenario, virtual network peering charges don't apply.
 
-<img src="Images/Single-Vnet.png" width="500">
- 
 ## Scenario 3: On-premises traffic to private endpoints
  
 This architecture can be implemented if you have configured connectivity with your on-premises network using either:

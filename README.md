@@ -46,7 +46,7 @@ Connections from a client virtual network to the Azure Firewall in a hub virtual
  <img src="Images/Hub&spoke-shared-Vnet-for-VMs&PEs.png" width="600">
  
  
-For more information on charges related to connections with peered virtual networks, see the FAQ section of the pricing page.
+For more information on charges related to connections with peered virtual networks, see the FAQ section of the [pricing page](https://azure.microsoft.com/pricing/details/private-link/).
 
 ## Scenario 2: Single virtual network
  
@@ -57,10 +57,12 @@ Use this pattern when a migration to a hub and spoke architecture isn't possible
 ## Scenario 3: On-premises traffic to private endpoints
  
 This architecture can be implemented if you have configured connectivity with your on-premises network using either:
-- ExpressRoute
-- Site to Site VPN
+
+- [ExpressRoute](https://learn.microsoft.com/en-us/azure/expressroute/expressroute-introduction)
+- [Site to Site VPN](https://learn.microsoft.com/en-us/azure/vpn-gateway/tutorial-site-to-site-portal)
+
 If your security requirements require client traffic to services exposed via private endpoints to be routed through a security appliance, deploy this scenario.
-The same considerations as in scenario 1 above apply. In this scenario, there aren't virtual network peering charges. For more information about how to configure your DNS servers to allow on-premises workloads to access private endpoints, see On-Premises workloads using a DNS forwarder.
+The same considerations as in scenario 1 above apply. In this scenario, there aren't virtual network peering charges. For more information about how to configure your DNS servers to allow on-premises workloads to access private endpoints, see [On-Premises workloads using a DNS forwarder](https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-dns#on-premises-workloads-using-a-dns-forwarder).
 
 <img src="Images/Onpremises-to-PEs.png" width="700">
  

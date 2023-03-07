@@ -342,8 +342,8 @@ We didn't create a virtual network peering directly between virtual networks **m
 In this section, we'll create a route table with a custom route. The route sends traffic from the **myVM** subnet to the address space of virtual network **myPEVNet**, through the Azure Firewall.
 
 1.	On the Azure portal menu or from the Home page, select Create a resource.
-2.	Type route table in the search box and press Enter.
-3.	Select Route table and then select Create.
+2.	Type **route table** in the search box and press Enter.
+3.	Select **Route table** and then select Create.
 4.	On the Create Route table page, use the following table to configure the route table:
 
 | Setting	 | Value |
@@ -359,7 +359,7 @@ In this section, we'll create a route table with a custom route. The route sends
 5.	Select Review + create. You're taken to the Review + create page where Azure validates your configuration.
 6.	When you see the Validation passed message, select Create.
 7.	Once the deployment completes select Go to resource.
-8.	Select Routes under Settings.
+8.	Select **Routes** under Settings.
 9.	Select + Add.
 10.	On the Add route page, enter, or select this information:
 
@@ -372,7 +372,7 @@ In this section, we'll create a route table with a custom route. The route sends
 
 11.	Select OK.
 12.	Select Subnets under Settings.
-13.	Select + Associate.
+13.	Select **+ Associate**.
 14.	On the Associate subnet page, enter or select this information:
 
 | Setting	 | Value |

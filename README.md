@@ -74,19 +74,20 @@ Connections from a client virtual network to the Azure Firewall in a hub virtual
 
 <img src="Images/Hub&spoke-Dedicated-Vnet-for-PEs.png" width="700">
 
+For more information on charges related to connections with peered virtual networks, see the FAQ section of the [pricing page](https://azure.microsoft.com/pricing/details/private-link/).
+
 # LAB :
 In this Lab you will deploy Scenario 4 with a Hub and spoke topology. You’ll create three virtual networks and their corresponding subnets to:
 - Contain the Azure Firewall used to restrict communication between the VM and the private endpoint.
 - Host the VM that is used to access your private link resource.
 - Host the private endpoint.
 
-
 ## Prerequisites:
 
 - An Azure subscription.
 - A Log Analytics workspace.
 
-See, Create a Log Analytics workspace in the Azure portal to create a workspace if you don't have one in your subscription.
+See, [Create a Log Analytics workspace in the Azure portal](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/quick-create-workspace) to create a workspace if you don't have one in your subscription.
 
 ## Exercice 1: Create a VM & networks
 
@@ -172,23 +173,23 @@ The default outbound access IP mechanism provides an outbound IP address that is
 The default outbound access IP is disabled when:
 - A public IP address is assigned to the VM
 - The VM is placed in the back-end pool of a standard load balancer (with or without outbound rules)
-- An Azure Virtual Network NAT gateway resource is assigned to the subnet of the VM
+- An [Azure Virtual Network NAT gateway](https://learn.microsoft.com/en-us/azure/virtual-network/nat-gateway/nat-overview) resource is assigned to the subnet of the VM
 
 VMs that are created by virtual machine scale sets in flexible orchestration mode don't have default outbound access.
-For more information about outbound connections in Azure, see Default outbound access in Azure and Use source network address translation (SNAT) for outbound connections.
+For more information about outbound connections in Azure, see [Default outbound access in Azure](https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/default-outbound-access) and [Use source network address translation (SNAT) for outbound connections](https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-outbound-connections).
 
 ### task 3: Connect the virtual networks using virtual network peering
 
-In this section, we'll connect virtual networks myVMVNet and myPEVNet to myAzFwVNet using peering in a hub and spoke topology. There won't be direct connectivity between myVMVNet and myPEVNet. 
+In this section, we'll connect virtual networks **myVMVNet** and **myPEVNet** to **myAzFwVNet** using peering in a hub and spoke topology. There won't be direct connectivity between **myVMVNet** and **myPEVNet**. 
 
-1.	In the portal's search bar, enter myAzFwVNet.
+1.	In the portal's search bar, enter **myAzFwVNet**.
 2.	Select Peerings under Settings menu and select + Add.
 3.	In Add Peering enter or select the following information:
 
 <img src="Images/Create-peering-1.png" width="400"> ----->  <img src="Images/Create-peering-2.png" width="400">
 
 4.	Select OK.
-5.	Repeat the same steps for the peering with the virtual network myPEVNet
+5.	Repeat the same steps for the peering with the virtual network **myPEVNet
 
 
 ## Exercice 2: Deploy Azure Firewall
@@ -241,7 +242,7 @@ In this section, you enable the logs on the firewall.
 
 In this section, you create a private endpoint for the Azure SQL database in the previous section.
 1.	In the Azure portal, select All resources in the left-hand menu.
-2.	Select the Azure SQL server mydbserver1 in the list of services. If you used a different server name, choose that name.
+2.	Select the Azure SQL server **mydbserver1** in the list of services. If you used a different server name, choose that name.
 3.	In the server Security settings, select Networking , Private access then Create Private endpoint 
 4.	In Create a private endpoint, enter or select this information in the Basics & resource tabs:
 
@@ -259,11 +260,11 @@ In this section, you create a private endpoint for the Azure SQL database in the
 
 ### Task 3: Link the virtual networks to the private DNS zone
 
-In this section, we'll link virtual networks myVMVNet and myAzFwVNet to the privatelink.database.windows.net private DNS zone. This zone was created when we created the private endpoint.
-The link is required for the VM and firewall to resolve the FQDN of database to its private endpoint address. Virtual network myPEVNet was automatically linked when the private endpoint was created.
+In this section, we'll link virtual networks **myVMVNet** and **myAzFwVNet** to the **privatelink.database.windows.net** private DNS zone. This zone was created when we created the private endpoint.
+The link is required for the VM and firewall to resolve the FQDN of database to its private endpoint address. Virtual network **myPEVNet** was automatically linked when the private endpoint was created.
 
 Note
-If you don't link the VM and firewall virtual networks to the private DNS zone, both the VM and firewall will still be able to resolve the SQL Server FQDN. They will resolve to its public IP address.
+If you don't link the VM and the firewall virtual networks to the private DNS zone, both the VM and firewall will still be able to resolve the SQL Server FQDN. They will resolve to its public IP address.
 
 1.	In the portal's search bar, enter privatelink.database.
 2.	Select **privatelink.database.windows.net** in the search results.
@@ -280,7 +281,7 @@ If you don't link the VM and firewall virtual networks to the private DNS zone, 
 
 ### Task 1: Configure an application rule with SQL FQDN in Azure Firewall
 
-In this section, configure an application rule to allow communication between myVM and the private endpoint for SQL Server mydbserver1.database.windows.net.
+In this section, configure an application rule to allow communication between **myVM** and the private endpoint for SQL Server **mydbserver1.database.windows.net**.
 This rule allows communication through the firewall that we created in the previous steps.
 1.	In the portal's search bar, enter Firewall Policies.
 2.	Select **myFirewall-policy** 
@@ -308,8 +309,8 @@ This rule allows communication through the firewall that we created in the previ
 
 ### Task 2: Route traffic between the virtual machine and private endpoint through Azure Firewall
 
-We didn't create a virtual network peering directly between virtual networks myVMVNet and myPEVNet. The virtual machine myVM doesn't have a route to the private endpoint we created. 
-In this section, we'll create a route table with a custom route. The route sends traffic from the myVM subnet to the address space of virtual network myPEVNet, through the Azure Firewall.
+We didn't create a virtual network peering directly between virtual networks **myVMVNet** and **myPEVNet**. The virtual machine **myVM** doesn't have a route to the private endpoint we created. 
+In this section, we'll create a route table with a custom route. The route sends traffic from the **myVM** subnet to the address space of virtual network **myPEVNet**, through the Azure Firewall.
 1.	On the Azure portal menu or from the Home page, select Create a resource.
 2.	Type route table in the search box and press Enter.
 3.	Select Route table and then select Create.
@@ -359,7 +360,7 @@ Connect to the VM myVm from the internet as follows:
 1.	In the portal's search bar, enter **myVm-ip**
 2.	Select **myVm-ip** in the search results.
 3.	Copy or write down the value under IP address.
-4.	If you're using Windows 10, run the following command using PowerShell. For other Windows client versions, use an SSH client like Putty:
+4.	If you're using Windows 10, run the following command using PowerShell. For other Windows client versions, use an SSH client like [Putty](https://www.putty.org/):
 •	Replace username with the admin username you entered during VM creation.
 •	Replace IPaddress with the IP address from the previous step.
 
@@ -384,7 +385,7 @@ Name:   mydbserver.privatelink.database.windows.net
 Address: 10.2.0.4
 ```
 
-2.	Install SQL Server command-line tools:
+2.	Install [SQL Server command-line tools](https://learn.microsoft.com/en-us/sql/linux/quickstart-install-connect-ubuntu#tools):
 Use the following steps to install the mssql-tools on Ubuntu. If curl isn't installed, you can run this code:
 
 `sudo apt-get update`
@@ -399,8 +400,8 @@ b.	Register the Ubuntu repository.
 
 `curl https://packages.microsoft.com/config/ubuntu/20.04/prod.list | sudo tee /etc/apt/sources.list.d/msprod.list`
 
-c.	Update the sources list and run the installation command with the unixODBC developer package. For more information, see Install the Microsoft ODBC driver for 
-Install the Microsoft ODBC driver for SQL Server (Linux)
+c.	Update the sources list and run the installation command with the unixODBC developer package. For more information, see [Install the Microsoft ODBC driver for 
+Install the Microsoft ODBC driver for SQL Server (Linux)](https://learn.microsoft.com/en-us/sql/connect/odbc/linux-mac/installing-the-microsoft-odbc-driver-for-sql-server?view=sql-server-ver16)
 
 `SQL Server (Linux)
 sudo apt-get update
@@ -412,12 +413,12 @@ For convenience, add **/opt/mssql-tools/bin/** to your PATH environment variable
 source ~/.bashrc`
 
 3.	Run the following command to connect to the SQL Server. Use the server admin and password you defined when you created the SQL Server in the previous steps.
-•	Replace <ServerAdmin> and <YourPassword>  with the admin username and the admin password you entered during the SQL server creation.  
+•	Replace **<ServerAdmin>** and **<YourPassword>**  with the admin username and the admin password you entered during the SQL server creation.  
 
 	`sqlcmd -S mydbserver1.database.windows.net -U '<ServerAdmin>' -P '<YourPassword>'`
 
-4.	A SQL command prompt will be displayed on successful login. Enter exit to exit the sqlcmd tool.
-5.	Close the connection to myVM by entering exit.
+4.	A SQL command prompt will be displayed on successful login. Enter exit to exit the **sqlcmd** tool.
+5.	Close the connection to **myVM** by entering exit.
 
 ## Exercice 6: Validate Azure firewall logs:
 
@@ -434,6 +435,7 @@ source ~/.bashrc`
 <img src="Images\LA-logs-query.png" width="600"> 
 	
 ### Task 2: Use Azure workbook
+
 1. Go to [Azure Monitor Workbook for Azure Firewall](https://github.com/Azure/Azure-Network-Security/tree/master/Azure%20Firewall/Workbook%20-%20Azure%20Firewall%20Monitor%20Workbook) and following the instructions on the page
 
 ## Clean up resources

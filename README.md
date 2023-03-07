@@ -145,6 +145,7 @@ You should have a resource group myResourceGroup, three networks, a VM and an Az
 | Subnet name 	|AzureFirewallSubnet|
 | Subnet address range>	|10.0.0.0/24|
 
+
 **Virtual machine network**
 
 | Parameter	 | Value |
@@ -165,6 +166,7 @@ You should have a resource group myResourceGroup, three networks, a VM and an Az
 | Subnet name 	|PrivateEndpointSubnet|
 | Subnet address range>	|10.2.0.0/24|
 
+
 **Virtual machine**
 
 | Parameter	 | Value |
@@ -174,6 +176,7 @@ You should have a resource group myResourceGroup, three networks, a VM and an Az
 | Image |	Ubuntu Server 18.04 LTS - Gen1|
 | Size 	|Standard_B2s|
 
+
 **Azure Bastion**
 
 | Parameter	 | Value |
@@ -182,6 +185,7 @@ You should have a resource group myResourceGroup, three networks, a VM and an Az
 | Region name |	North Europe |
 | Public ip adress |	BastionPublicIpAddress|
 | Virtual network/subnet| myVMVNet/AzureBastionSubnet|
+
 
 **About outbound access for Azure VMs**
 
@@ -195,9 +199,10 @@ The default outbound access IP is disabled when:
 - An [Azure Virtual Network NAT gateway](https://learn.microsoft.com/en-us/azure/virtual-network/nat-gateway/nat-overview) resource is assigned to the subnet of the VM
 
 VMs that are created by virtual machine scale sets in flexible orchestration mode don't have default outbound access.
+
 For more information about outbound connections in Azure, see [Default outbound access in Azure](https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/default-outbound-access) and [Use source network address translation (SNAT) for outbound connections](https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-outbound-connections).
 
-### task 3: Connect the virtual networks using virtual network peering
+### Task 3: Connect the virtual networks using virtual network peering
 
 In this section, we'll connect virtual networks **myVMVNet** and **myPEVNet** to **myAzFwVNet** using peering in a hub and spoke topology. There won't be direct connectivity between **myVMVNet** and **myPEVNet**. 
 
@@ -208,12 +213,15 @@ In this section, we'll connect virtual networks **myVMVNet** and **myPEVNet** to
 <img src="Images/Create-peering-1.png" width="400"> ----->  <img src="Images/Create-peering-2.png" width="400">
 
 4.	Select OK.
-5.	Repeat the same steps for the peering with the virtual network **myPEVNet
+5.	Repeat the same steps for the peering with the virtual network **myPEVNet**
+6.	Check the peering in **Azure Network Watcher > Topology**:
 
+<img src="Images/Check-peerings.png" width="400"> 
 
 ## Exercice 2: Deploy Azure Firewall
 
 ### Task 1: Create the resource
+
 1.	On the Azure portal menu or from the Home page, select Create a resource.
 2.	Type firewall in the search box and press Enter.
 3.	Select Firewall and then select Create.
@@ -280,9 +288,10 @@ In this section, you create a private endpoint for the Azure SQL database in the
 ### Task 3: Link the virtual networks to the private DNS zone
 
 In this section, we'll link virtual networks **myVMVNet** and **myAzFwVNet** to the **privatelink.database.windows.net** private DNS zone. This zone was created when we created the private endpoint.
+
 The link is required for the VM and firewall to resolve the FQDN of database to its private endpoint address. Virtual network **myPEVNet** was automatically linked when the private endpoint was created.
 
-Note
+**Note**
 If you don't link the VM and the firewall virtual networks to the private DNS zone, both the VM and firewall will still be able to resolve the SQL Server FQDN. They will resolve to its public IP address.
 
 1.	In the portal's search bar, enter privatelink.database.
@@ -302,6 +311,7 @@ If you don't link the VM and the firewall virtual networks to the private DNS zo
 
 In this section, configure an application rule to allow communication between **myVM** and the private endpoint for SQL Server **mydbserver1.database.windows.net**.
 This rule allows communication through the firewall that we created in the previous steps.
+
 1.	In the portal's search bar, enter Firewall Policies.
 2.	Select **myFirewall-policy** 
 3.	Select the Application rules tab.
@@ -322,14 +332,15 @@ This rule allows communication through the firewall that we created in the previ
 |Protocol: Port|mssql:1433|
 	 
 <img src="Images/Create-AzFW-App-Rule.png" width="600"> 
-
 	
 6.	Select Add.
 
 ### Task 2: Route traffic between the virtual machine and private endpoint through Azure Firewall
 
 We didn't create a virtual network peering directly between virtual networks **myVMVNet** and **myPEVNet**. The virtual machine **myVM** doesn't have a route to the private endpoint we created. 
+
 In this section, we'll create a route table with a custom route. The route sends traffic from the **myVM** subnet to the address space of virtual network **myPEVNet**, through the Azure Firewall.
+
 1.	On the Azure portal menu or from the Home page, select Create a resource.
 2.	Type route table in the search box and press Enter.
 3.	Select Route table and then select Create.
@@ -363,9 +374,12 @@ In this section, we'll create a route table with a custom route. The route sends
 12.	Select Subnets under Settings.
 13.	Select + Associate.
 14.	On the Associate subnet page, enter or select this information:
-Setting	Value
-Virtual network	Select myVMVNet.
-Subnet	Select VMSubnet.
+
+| Setting	 | Value |
+|------------| ------| 
+|Virtual network|myVMVNet|
+|Subnet|VMSubnet|
+
 15.	Select OK.
 
 <img src="Images\Create-RT-UDR.png" width="600"> 

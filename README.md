@@ -3,25 +3,25 @@
 
 # Introduction	
 
-Azure Private Link enables you to access Azure PaaS Services (for example, Azure Storage and SQL Database) and Azure hosted customer-owned/partner services over a private endpoint in your virtual network.
+Azure Private Link enables you to access Azure PaaS Services (for example, Azure Storage and SQL Database) and Azure hosted customer-owned/partner services over a [private endpoint](https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-overview) in your virtual network.
 
 Traffic between your virtual network and the service travels the Microsoft backbone network. Exposing your service to the public internet is no longer necessary.
 Access to the private endpoint through virtual network peering and on-premises network connections extend the connectivity.
 
-You may need to inspect or block traffic from clients to the services exposed via private endpoints. Complete this inspection by using Azure Firewall or a third-party network virtual appliance.
+You may need to inspect or block traffic from clients to the services exposed via private endpoints. Complete this inspection by using [Azure Firewall](https://learn.microsoft.com/en-us/azure/firewall/overview) or a third-party network virtual appliance.
 
-The following limitations apply:
+The following limitations apply with Private Endpoints:
 - Private Endpoint supports **TCP** and **UDP** traffic only. See [Private Endpoint FAQ](https://learn.microsoft.com/en-us/azure/private-link/private-link-faq#do-private-endpoints-support-icmp-traffic-)
-- Private Endpoint do not support NSG flow logs. It means that Traffic Analysis do not work. See [Doc](https://learn.microsoft.com/en-us/azure/network-watcher/network-watcher-nsg-flow-logging-overview#traffic-across-a-private-link).
-- Private endpoint automatically creates a /32 route propagated to the VNet it resides in and other peered VNets. [Details](https://msandbu.org/private-endpoints-snat-udr-and-azure-firewall/).
+- Private Endpoint do not support **NSG flow logs**. It means that Traffic Analysis do not work. See [Doc](https://learn.microsoft.com/en-us/azure/network-watcher/network-watcher-nsg-flow-logging-overview#traffic-across-a-private-link).
+- Private endpoint automatically creates a **/32 route** propagated to the VNet it resides in and other peered VNets. [Details](https://msandbu.org/private-endpoints-snat-udr-and-azure-firewall/).
 - Network security groups (NSG) are bypassed by traffic coming from private endpoints
 - User-defined routes (UDR) are bypassed by traffic coming from private endpoints. User-defined routes can be used to override 	traffic destined for the private endpoint.
 - A single route table can be attached to a subnet
 - A route table supports up to 400 routes
 
 Azure Firewall filters traffic using either:
-- FQDN in network rules for TCP and UDP protocols
-- FQDN in application rules for HTTP, HTTPS, and MSSQL.
+- [FQDN in network rules](https://learn.microsoft.com/en-us/azure/firewall/fqdn-filtering-network-rules) for TCP and UDP protocols
+- [FQDN in application rules](https://learn.microsoft.com/en-us/azure/firewall/features#application-fqdn-filtering-rules) for HTTP, HTTPS, and MSSQL.
 
  
 

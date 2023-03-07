@@ -90,3 +90,4 @@ az vm create \
   --size Standard_B2s \
   --admin-username azureadmin \
   --authentication-type password
+

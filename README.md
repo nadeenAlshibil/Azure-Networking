@@ -34,39 +34,46 @@ The use of application rules over network rules is recommended when inspecting t
 
 
 ## Scenario 1: Single virtual network
- 
-Use this pattern when a migration to a hub and spoke architecture isn't possible. The same considerations as in scenario 2 apply. In this scenario, virtual network peering charges don't apply.
 
 <img src="Images/Single-Vnet.png" width="500">
 
+Use this pattern when a migration to a hub and spoke architecture isn't possible. 
+The VMs will have /32 system routes pointing to each private endpoint. One route per private endpoint is configured to route traffic through Azure Firewall.
+
+The administrative overhead of maintaining the route table increases as services are exposed in the virtual network. The possibility of hitting the route limit also increases.Depending on your overall architecture, it's possible to run into the 400 routes limit. It's recommended to use **scenario 4** whenever possible.
+
+In this scenario, virtual network peering charges **don't apply.
 
 ## Scenario 2: Hub and spoke architecture - Shared virtual network for private endpoints and virtual machines
- 
-This scenario is implemented when:
-- It's not possible to have a dedicated virtual network for the private endpoints
-- When only a few services are exposed in the virtual network using private endpoints
-The virtual machines will have /32 system routes pointing to each private endpoint. One route per private endpoint is configured to route traffic through Azure Firewall.
-The administrative overhead of maintaining the route table increases as services are exposed in the virtual network. The possibility of hitting the route limit also increases.
-Depending on your overall architecture, it's possible to run into the 400 routes limit. It's recommended to use scenario 1 whenever possible.
-Connections from a client virtual network to the Azure Firewall in a hub virtual network will incur charges if the virtual networks are peered. Connections from Azure Firewall in a hub virtual network to private endpoints in a peered virtual network are not charged.
 
  <img src="Images/Hub&spoke-shared-Vnet-for-VMs&PEs.png" width="600">
  
- 
+This scenario is implemented when:
+•	It's not possible to have a dedicated virtual network for the private endpoints
+•	When only a few services are exposed in the virtual network using private endpoints
+
+The same considerations as in scenario 1 apply ! 
+
+Connections from a client virtual network to the Azure Firewall in a hub virtual network will incur charges if the virtual networks are peered. wheras connections from Azure Firewall in a hub virtual network to private endpoints in a peered virtual network **are not charged.
+
 For more information on charges related to connections with peered virtual networks, see the FAQ section of the [pricing page](https://azure.microsoft.com/pricing/details/private-link/).
 
 
 ## Scenario 3: On-premises traffic to private endpoints
- 
+
+<img src="Images/Onpremises-to-PEs.png" width="700">
+
 This architecture can be implemented if you have configured connectivity with your on-premises network using either:
 
 - [ExpressRoute](https://learn.microsoft.com/en-us/azure/expressroute/expressroute-introduction)
 - [Site to Site VPN](https://learn.microsoft.com/en-us/azure/vpn-gateway/tutorial-site-to-site-portal)
 
 If your security requirements require client traffic to services exposed via private endpoints to be routed through a security appliance, deploy this scenario.
-The same considerations as in scenario 1 above apply. In this scenario, there aren't virtual network peering charges. For more information about how to configure your DNS servers to allow on-premises workloads to access private endpoints, see [On-Premises workloads using a DNS forwarder](https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-dns#on-premises-workloads-using-a-dns-forwarder).
+The same considerations as in scenario 1 above apply. 
 
-<img src="Images/Onpremises-to-PEs.png" width="700">
+In this scenario, there aren't virtual network peering charges. For more information about how to configure your DNS servers to allow on-premises workloads to access private endpoints, see [On-Premises workloads using a DNS forwarder](https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-dns#on-premises-workloads-using-a-dns-forwarder).
+
+
  
 ## Scenario 4: Hub and spoke architecture - Dedicated virtual network for private endpoints
  
@@ -94,19 +101,25 @@ See, [Create a Log Analytics workspace in the Azure portal](https://learn.micros
 ## Exercice 1: Create a VM & networks
 
 ### Task 1: Create resources
-In this section, you'll create a virtual network and subnet to host the VM used to access your private link resource. An Azure SQL database is used later as the example service.
+
+In this section, you'll create a virtual network and subnet to host the VM used to access your private link resource. A bastion is created to allow secure access to the VM. An Azure SQL database is used later as the example service.
 
 We will be using an Azure CLI script to deploy the networks and the VM.
 
-If you prefer to use Terraform to deploy the lab resources go here: https://github.com/nadeenAlshibil/Azure-Networking/blob/main/Terraform/readme.md 
+If you prefer to use Terraform to deploy the lab resources go [here !!](https://github.com/nadeenAlshibil/Azure-Networking/blob/main/Terraform/readme.md) 
 
 Otherwise keep reading. 
   
-  1.	Download the Lab content here: https://aka.ms/AzureNetworksLab
-  2.	Unzip the folder and locate the initial deployment script: **1-1-Initial-Deployment.sh**
-  3.	Login to the portal & launch the cloud shell:
+  1.	Download the Lab content:
+  
+  <img src="Images/Clone-or-Download-Content.png" width="250"> 
  
- ![image](Images/Login-to-the-portal.png) 
+  3.	Unzip the folder and locate the initial deployment script: **1-1-Initial-Deployment.sh** Under Scripts.
+  4.	Login to the portal & launch the cloud shell:
+ 
+ <img src="Images/Login-to-the-portal.png" width="700"> 
+ 
+ You can also open a new tab for the shell: https://shell.azure.com
  
  3.	List your subscriptions : `az account list –o table`
  4.	Set the right the subscription if needed: `az account set ––subscription {id}`

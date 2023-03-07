@@ -390,10 +390,10 @@ In this section, we'll create a route table with a custom route. The route sends
 
 Connect to the VM myVm from the internet as follows:
 1.	In the portal's search bar, enter **myVm**.
-2.	Select the VM myVM in the search results.
+2.	Select the VM **myVM** in the search results.
 3.	Go to **Connect > Batsion**
-•	Replace username with **azureadmin**
-•	Enter the password you defined when creating myVm
+- Replace username with **azureadmin**
+- Enter the password you defined when creating myVm
 
 
 ### Task 2: Access SQL Server privately from the virtual machine

@@ -289,10 +289,11 @@ In this section, you create a private endpoint for the Azure SQL database in the
 
 In this section, we'll link virtual networks **myVMVNet** and **myAzFwVNet** to the **privatelink.database.windows.net** private DNS zone. This zone was created when we created the private endpoint.
 
-The link is required for the VM and firewall to resolve the FQDN of database to its private endpoint address. Virtual network **myPEVNet** was automatically linked when the private endpoint was created.
+Note
+If you don't link the VM and firewall virtual networks to the private DNS zone, both the VM and firewall will still be able to resolve the SQL Server FQDN. They will resolve to its public IP address. 
 
-**Note**
-If you don't link the VM and the firewall virtual networks to the private DNS zone, both the VM and firewall will still be able to resolve the SQL Server FQDN. They will resolve to its public IP address.
+**Pause and Test**: Test by running on VM "nslookup labserver.database.windows.net" -> You get the public IP of the VM. (see Exercice5 below for tools installation instructions)
+Test further with "nc -zv labserver.database.windows.net 1433" -> we get connection succeeded but when we test actual connexion with "sqlcmd -S labserver.database.windows.net -U 'username'" we get "Connection was denied" since Public Network Access is disabled on sql server.
 
 1.	In the portal's search bar, enter privatelink.database.
 2.	Select **privatelink.database.windows.net** in the search results.
@@ -304,6 +305,9 @@ If you don't link the VM and the firewall virtual networks to the private DNS zo
 
 6.	Select OK.
 7.	Repeat the same steps for **myAzFwVNet** virtual network.
+
+**Pause and Test**: After adding links to vnets, a new "nslookup labserver.database.windows.net" command on the VM resolves to the sqlserver private IP (=the private endpoint IP)
+But the "nc -zv labserver.database.windows.net 1433" command fails because there is not yet a rule on the firewall allowing the communication (By default the firewall blocks everything). Also there is no route yet between the vm-vnet and the privateendpoint-vnet.
 
 ## Exercice 4 : Configure the connectivity through Azure Firewall
 
@@ -334,6 +338,8 @@ This rule allows communication through the firewall that we created in the previ
 <img src="Images/Create-AzFW-App-Rule.png" width="600"> 
 	
 6.	Select Add.
+
+**Pause and Test**: The connection VM-> sql server still fails because there is no route yet between the vm-vnet and the privateendpoint-vnet.
 
 ### Task 2: Route traffic between the virtual machine and private endpoint through Azure Firewall
 
@@ -389,17 +395,12 @@ In this section, we'll create a route table with a custom route. The route sends
 ### Task 1: Connect to the virtual machine from your client computer
 
 Connect to the VM myVm from the internet as follows:
+1.	In the portal's search bar, enter **myVm**.
+2.	Select the VM **myVM** in the search results.
+3.	Go to **Connect > Batsion**
+- Replace username with **azureadmin**
+- Enter the password you defined when creating myVm
 
-1.	In the portal's search bar, enter **myVm-ip**
-2.	Select **myVm-ip** in the search results.
-3.	Copy or write down the value under IP address.
-4.	If you're using Windows 10, run the following command using PowerShell. For other Windows client versions, use an SSH client like [Putty](https://www.putty.org/):
-•	Replace username with the admin username you entered during VM creation.
-•	Replace IPaddress with the IP address from the previous step.
-
-`ssh username@IPaddress`
-
-5.	Enter the password you defined when creating myVm
 
 ### Task 2: Access SQL Server privately from the virtual machine
 
@@ -436,9 +437,11 @@ b.	Register the Ubuntu repository.
 c.	Update the sources list and run the installation command with the unixODBC developer package. For more information, see [Install the Microsoft ODBC driver for 
 Install the Microsoft ODBC driver for SQL Server (Linux)](https://learn.microsoft.com/en-us/sql/connect/odbc/linux-mac/installing-the-microsoft-odbc-driver-for-sql-server?view=sql-server-ver16)
 
-`SQL Server (Linux)
+```
 sudo apt-get update
-sudo apt-get install mssql-tools unixodbc-dev`
+
+sudo apt-get install mssql-tools unixodbc-dev
+```
 
 For convenience, add **/opt/mssql-tools/bin/** to your PATH environment variable, to make sqlcmd or bcp accessible from the bash shell. For non-interactive sessions, modify the PATH environment variable in your **~/.bashrc** file with the following command:
 
@@ -450,8 +453,13 @@ source ~/.bashrc`
 
 	`sqlcmd -S mydbserver1.database.windows.net -U '<ServerAdmin>' -P '<YourPassword>'`
 
-4.	A SQL command prompt will be displayed on successful login. Enter exit to exit the **sqlcmd** tool.
-5.	Close the connection to **myVM** by entering exit.
+4.	A SQL command prompt will be displayed on successful login. 
+5. 	Enter the following command to check the Database information:
+	
+	`select name, database_id, create_date from sys.databases;GO`
+	
+6. 	Enter exit to exit the **sqlcmd** tool.
+7.	Close the connection to **myVM** by entering exit.
 
 ## Exercice 6: Validate Azure firewall logs:
 

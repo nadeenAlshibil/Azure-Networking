@@ -133,7 +133,7 @@ Otherwise keep reading.
 
 ### Task 2: Check the deployment
 
-You should have a resource group myResourceGroup, three networks, a VM and an Azure Bastion with following parameters: 
+1. Go to MyResourceGroupe and check the resources deployed. You should have a resource group myResourceGroup, three networks, a VM and an Azure Bastion with following parameters: 
 
 **Azure Firewall network**
 
@@ -186,6 +186,10 @@ You should have a resource group myResourceGroup, three networks, a VM and an Az
 | Public ip adress |	BastionPublicIpAddress|
 | Virtual network/subnet| myVMVNet/AzureBastionSubnet|
 
+
+2. Go to Azure Network Watcher > Topology:
+
+<img src="Images/Check-Deployment-Watcher.png" width="250"> 
 
 **About outbound access for Azure VMs**
 

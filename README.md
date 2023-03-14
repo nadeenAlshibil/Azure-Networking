@@ -292,12 +292,12 @@ In this section, you create a private endpoint for the Azure SQL database in the
 ### Task 3: Link the virtual networks to the private DNS zone
 
 In this section, we'll link virtual networks **myVMVNet** and **myAzFwVNet** to the **privatelink.database.windows.net** private DNS zone. This zone was created when we created the private endpoint.
-
-Note
 If you don't link the VM and firewall virtual networks to the private DNS zone, both the VM and firewall will still be able to resolve the SQL Server FQDN. They will resolve to its public IP address. 
 
-**Pause and Test**: Test by running on VM "nslookup labserver.database.windows.net" -> You get the public IP of the VM. (see Exercice5 below for tools installation instructions)
-Test further with "nc -zv labserver.database.windows.net 1433" -> we get connection succeeded but when we test actual connexion with "sqlcmd -S labserver.database.windows.net -U 'username'" we get "Connection was denied" since Public Network Access is disabled on sql server.
+**Pause and Test**: 
+Test by running on VM `nslookup labserver.database.windows.net`   -> You get the public IP of the VM. (see Exercice5 below for tools installation instructions)
+
+Test further with `nc -zv labserver.database.windows.net 1433`   -> You'll get connection succeeded but when if you test actual connexion with `sqlcmd -S labserver.database.windows.net -U 'username'` You'll get the follwoing message **"Connection was denied" since Public Network Access is disabled on sql server**.
 
 1.	In the portal's search bar, enter privatelink.database.
 2.	Select **privatelink.database.windows.net** in the search results.
@@ -310,8 +310,10 @@ Test further with "nc -zv labserver.database.windows.net 1433" -> we get connect
 6.	Select OK.
 7.	Repeat the same steps for **myAzFwVNet** virtual network.
 
-**Pause and Test**: After adding links to vnets, a new "nslookup labserver.database.windows.net" command on the VM resolves to the sqlserver private IP (=the private endpoint IP)
-But the "nc -zv labserver.database.windows.net 1433" command fails because there is not yet a rule on the firewall allowing the communication (By default the firewall blocks everything). Also there is no route yet between the vm-vnet and the privateendpoint-vnet.
+**Pause and Test**: 
+After adding links to vnets, a new `nslookup labserver.database.windows.net` command on the VM resolves to the sqlserver private IP (= the private endpoint IP)
+
+But the `nc -zv labserver.database.windows.net 1433` command fails because there is not yet a rule on the firewall allowing the communication (By default the firewall blocks everything). Also there is no route yet between **myVMVNet** and **myPEVNet**.
 
 ## Exercice 4 : Configure the connectivity through Azure Firewall
 

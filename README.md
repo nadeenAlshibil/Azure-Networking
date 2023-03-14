@@ -290,6 +290,7 @@ In this section, you create a private endpoint for the Azure SQL database in the
 7.	Select Create.
 
 **Pause and Check:**
+
 Go to **myResourceGroup** and check that the private Endpoint and the private DNS zone **privatelink.database.windows.net** were created. Now, click on the private DNS zone and check the A record that was created for the private endpoint, and note its private IP.  
 
 ### Task 3: Link the virtual networks to the private DNS zone

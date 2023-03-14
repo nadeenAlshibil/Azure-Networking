@@ -453,8 +453,11 @@ source ~/.bashrc`
 
 	`sqlcmd -S mydbserver1.database.windows.net -U '<ServerAdmin>' -P '<YourPassword>'`
 
-4.	A SQL command prompt will be displayed on successful login. Enter exit to exit the **sqlcmd** tool.
-5.	Close the connection to **myVM** by entering exit.
+4.	A SQL command prompt will be displayed on successful login. 
+5. 	Enter the following command to check the Database information:
+	`select name, database_id, create_date from sys.databases;GO`
+6. 	Enter exit to exit the **sqlcmd** tool.
+7.	Close the connection to **myVM** by entering exit.
 
 ## Exercice 6: Validate Azure firewall logs:
 

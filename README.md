@@ -301,7 +301,9 @@ If you don't link the VM and firewall virtual networks to the private DNS zone, 
 **Pause and Test**: 
 Test by running on VM `nslookup labserver.database.windows.net`   -> You get the public IP of the VM. (see Exercice5 below for tools installation instructions)
 
-Test further with `nc -zv labserver.database.windows.net 1433`   -> You'll get connection succeeded but when if you test actual connexion with `sqlcmd -S labserver.database.windows.net -U 'username'` You'll get the follwoing message **"Connection was denied" since Public Network Access is disabled on sql server**.
+Test further with `nc -zv labserver.database.windows.net 1433`   -> You'll get connection succeeded 
+
+But when you test actual connexion with `sqlcmd -S labserver.database.windows.net -U 'username'` You'll get the follwoing message **"Connection was denied" since Public Network Access is disabled on sql server**.
 
 1.	In the portal's search bar, enter privatelink.database.
 2.	Select **privatelink.database.windows.net** in the search results.

@@ -187,9 +187,9 @@ Otherwise keep reading.
 | Virtual network/subnet| myVMVNet/AzureBastionSubnet|
 
 
-2. Go to Azure Network Watcher > Topology:
+2. Go to Azure Network Watcher > Topology (Make sure you select the right resource groupe):
 
-<img src="Images/Check-Deployment-Watcher.png" width="250"> 
+<img src="Images/Check-Deployment-Watcher.png" width="400"> 
 
 **About outbound access for Azure VMs**
 

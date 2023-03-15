@@ -246,7 +246,7 @@ In this section, you enable the logs on the firewall.
 4.	Select + Add diagnostic setting in the Diagnostic settings.
 5.	In Diagnostics setting, enter or select this information:
 
- <img src="Images/Azure-Firewall-Logs.png" width="600">
+ <img src="Images/Azure-Firewall-Logs-all.png" width="600">
  
  6.	Select Save.
  

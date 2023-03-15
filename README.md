@@ -529,7 +529,7 @@ To configure DNS proxy, you must configure your virtual network DNS servers sett
 Make sure **myAzFwVNet** is still linked, otherwise Azure Firewall will not bea able to resolve the FQDN of database to its private endpoint address.
 
 **Pause and Test**: 
-If you try to resolve the FQDN of database with the following command you'll get the Public IP as a resut:
+If you try to resolve the FQDN of database with the following command you'll get the Public IP as a result:
 
 `nslookup mydbserver1.database.windows.net`  
 
@@ -551,6 +551,11 @@ By default, DNS Proxy is disabled. When this setting is enabled, the firewall li
 3.	Enable **DNS Proxy**
 4.	Review the DNS servers configuration to make sure that the settings are appropriate for your environment.
 5.	Select Save.
+
+**Pause and Test**: 
+Try to resolve the FQDN of database with the following command:
+
+`nslookup mydbserver1.database.windows.net`  
 
 ### Task 4: Validate Azure Firewall DNS logs
 

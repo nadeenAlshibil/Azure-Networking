@@ -496,7 +496,12 @@ source ~/.bashrc
 	
 ### Task 2: Use Azure workbook
 
-1. Go to [Azure Monitor Workbook for Azure Firewall](https://github.com/Azure/Azure-Network-Security/tree/master/Azure%20Firewall/Workbook%20-%20Azure%20Firewall%20Monitor%20Workbook) and following the instructions on the page
+1. Go to [Azure Monitor Workbook for Azure Firewall](https://github.com/Azure/Azure-Network-Security/tree/master/Azure%20Firewall/Workbook%20-%20Azure%20Firewall%20Monitor%20Workbook) and following the instructions on the page to deploy the workbook. 
+	
+This workbook visualizes security-relevant Azure Firewall events across several filterable panels for Mutli-Tenant/Workspace view. It works with all Azure Firewall data types, including Application Rule Logs, Network Rule Logs, DNS Proxy logs and ThreatIntel logs.  
+
+**Note:**:
+Make sure you use the right workbook (**Azure Diagnostics** or with **Resource Specific** logs enabled) according to your choice in **Exercice2. Task2.** ! 
 
 <img src="Images\LA-logs-Workbook-1.png" width="900"> 
 	

@@ -507,6 +507,72 @@ Make sure you use the right workbook (**Azure Diagnostics** or with **Resource S
 	
 <img src="Images\LA-logs-Workbook-2.png" width="800"> 
 
+	
+## Exercice 7: Use Azure Firewall as DNS proxy 
+
+You can use Azure Firewall as a DNS proxy for your VMs, the only requirement here is that the VMs must be able to reach Azure Firewall. One reason of this configuration could be that you don't have the possibility to link your VMs virtual network to the private DNS zone.
+
+If you use Azure Firewall as DNS proxy, it must have functioning DNS servers configured in Azure Firewall DNS settings, these can be the default Azure-provided ones or a custom DNS server that you manage your-self.
+
+To configure DNS proxy, you must configure your virtual network DNS servers setting to use the firewall private IP address. Then enable the DNS proxy in the Azure Firewall DNS settings.
+
+### Task 1 : Unlink VMs virtual network from the **privatelink.database.windows.net private DNS** zone:
+
+1.	In the portal's search bar, enter privatelink.database.
+2.	Select **privatelink.database.windows.net** in the search results.
+3.	Select Virtual network links under Settings.
+4. Locate the link corresponding to **myVMVNet** and delete it. 
+
+<img src="Images\Unlink-VMs-Vnet-DNS.png" width="600"> 	
+
+**Note:**
+Make sure **myAzFwVNet** is still linked, otherwise Azure Firewall will not bea able to resolve the FQDN of database to its private endpoint address.
+
+**Pause and Test**: 
+If you try to resolve the FQDN of database with the following command you'll get the Public IP as a result:
+
+`nslookup mydbserver1.database.windows.net`  
+
+### Task 2: Configure virtual network DNS servers
+	
+1.	Select the virtual network where the DNS traffic will be routed through the Azure Firewall instance.
+2.	Under Settings, select **DNS servers.**
+3.	Under DNS servers, select Custom.
+4.	Enter the firewall's private IP address.
+5.	Select Save.
+6.	**Restart the VMs that are connected to the virtual network so they're assigned the new DNS server settings. VMs continue to use their current DNS settings until they're restarted.**
+
+### Task 3: Enable DNS proxy
+
+By default, DNS Proxy is disabled. When this setting is enabled, the firewall listens on port 53 and forwards DNS requests to the configured DNS servers.
+	
+1.	Select your Azure Firewall instance.
+2.	Under Settings, select DNS settings.
+3.	Enable **DNS Proxy**
+4.	Review the DNS servers configuration to make sure that the settings are appropriate for your environment.
+5.	Select Save.
+
+**Pause and Test**: 
+Try to resolve the FQDN of database with the following command:
+
+`nslookup mydbserver1.database.windows.net`  
+
+### Task 4: Validate Azure Firewall DNS logs
+
+1.	In the Azure portal, select All Resources and select your Log Analytics workspace.
+2.	Select Logs under General in the Log Analytics workspace page.
+3.	Select the blue Get Started button.
+4.	In the Example queries window, select Firewalls under All Queries.
+5.	Select the Run button under **Azure Firewall DNS Proxy log data**.
+
+<img src="Images\LA-logs-query-DNS-Proxy.png" width="600"> 	
+
+6. OR go to the workbook and Visualise the logs:
+
+<img src="Images\LA-logs-Workbook-DNS-Proxy-1.png" width="600"> 
+	
+<img src="Images\LA-logs-Workbook-DNS-Proxy-2.png" width="600"> 
+
 ## Clean up resources
 
 When you're done using the resources, delete the resource group and all of the resources it contains:

@@ -552,7 +552,21 @@ By default, DNS Proxy is disabled. When this setting is enabled, the firewall li
 4.	Review the DNS servers configuration to make sure that the settings are appropriate for your environment.
 5.	Select Save.
 
-### Task 4: 
+### Task 4: Validate Azure Firewall DNS logs
+
+1.	In the Azure portal, select All Resources and select your Log Analytics workspace.
+2.	Select Logs under General in the Log Analytics workspace page.
+3.	Select the blue Get Started button.
+4.	In the Example queries window, select Firewalls under All Queries.
+5.	Select the Run button under **Azure Firewall DNS Proxy log data**.
+
+<img src="Images\LA-logs-query-DNS-Proxy.png" width="600"> 	
+
+6. OR go to the workbook and Visualise the logs:
+
+<img src="Images\LA-logs-Workbook-DNS-Proxy-1.png" width="600"> 
+	
+<img src="Images\LA-logs-Workbook-DNS-Proxy-2.png" width="600"> 
 
 ## Clean up resources
 

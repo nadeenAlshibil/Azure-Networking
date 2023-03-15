@@ -218,7 +218,7 @@ In this section, we'll connect virtual networks **myVMVNet** and **myPEVNet** to
 
 4.	Select OK.
 5.	Repeat the same steps for the peering with the virtual network **myPEVNet**
-6.	Check the peering in **Azure Network Watcher > Topology**:
+6.	Check the peering in **Azure Network Watcher > Topology:**
 
 <img src="Images/Check-peerings.png" width="400"> 
 
@@ -457,8 +457,11 @@ sudo apt-get install mssql-tools unixodbc-dev
 
 For convenience, add **/opt/mssql-tools/bin/** to your PATH environment variable, to make sqlcmd or bcp accessible from the bash shell. For non-interactive sessions, modify the PATH environment variable in your **~/.bashrc** file with the following command:
 
-`echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc
-source ~/.bashrc`
+```
+echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc
+
+source ~/.bashrc
+```
 
 3.	Run the following command to connect to the SQL Server. Use the server admin and password you defined when you created the SQL Server in the previous steps.
 •	Replace **<ServerAdmin>** and **<YourPassword>**  with the admin username and the admin password you entered during the SQL server creation.  
@@ -468,7 +471,11 @@ source ~/.bashrc`
 4.	A SQL command prompt will be displayed on successful login. 
 5. 	Enter the following command to check the Database information:
 	
-	`select name, database_id, create_date from sys.databases;GO`
+	```
+	select name, database_id, 
+	create_date from sys.databases;
+	GO
+	```
 	
 6. 	Enter exit to exit the **sqlcmd** tool.
 7.	Close the connection to **myVM** by entering exit.

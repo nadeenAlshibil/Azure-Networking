@@ -21,7 +21,10 @@ We are going to enable the Transport Layer Security (TLS) Inspection feature of 
 
 ### Why TLS use inspection?
 
-The TLS protocol primarily provides cryptography for privacy, integrity, and authenticity using certificates between two or more communicating applications. It runs in the application layer and is widely used to encrypt the HTTP protocol.
+The TLS protocol primarily provides cryptography for **privacy, integrity, and authenticity** using certificates between two or more communicating applications. It runs in the application layer and is widely used to encrypt the **HTTP protocol**.
 
-Encrypted traffic has a possible security risk and can hide illegal user activity and malicious traffic. Azure Firewall without TLS inspection (as shown in the following diagram) has no visibility into the data that flows in the encrypted TLS tunnel, and so can't provide a full protection coverage.
-`nslookup mydbserver1.database.windows.net`  
+Encrypted traffic has a possible security risk and can hide illegal user activity and malicious traffic. Azure Firewall without TLS inspection has no visibility into the data that flows in the encrypted TLS tunnel, and so can't provide a full protection coverage: 
+
+<img src="Images\afw-premium-without-TLS.png" width="600"> 	
+
+<img src="Images\afw-premium-without-TLS.png" width="600"> 	

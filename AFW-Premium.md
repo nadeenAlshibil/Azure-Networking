@@ -31,11 +31,16 @@ Azure Firewall Premium terminates and inspects TLS connections to **detect, aler
 The firewall actually creates two dedicated TLS connections: one with the Web Server (contoso.com) and another connection with the client. 
 Using the customer provided CA certificate, it generates an **on-the-fly certificate**, which replaces the Web Server certificate and shares it with the client to establish the TLS connection between the firewall and the client.
 
-<img src="Images\afw-premium-without-TLS.png" width="600"> 	
+<img src="Images\afw-premium-with-TLS.png" width="600"> 	
 
 The following use cases are supported with Azure Firewall:
 - Outbound TLS Inspection: To protect against malicious traffic that is sent from an internal client hosted in Azure to the Internet.
 - East-West TLS Inspection (includes traffic that goes from/to an on-premises network):To protect your Azure workloads from potential malicious traffic sent from within Azure.
-- Inbound TLS Inspection (Supported only by [Azure Web Application Firewall on Azure Application Gateway](https://learn.microsoft.com/en-us/azure/web-application-firewall/ag/ag-overview)): To protect internal servers or applications hosted in Azure from malicious requests that arrive from the Internet or an external network. Application Gateway provides end-to-end encryption.
+- Inbound TLS Inspection (Supported only by [Azure Web Application Firewall (WAF) on Azure Application Gateway](https://learn.microsoft.com/en-us/azure/web-application-firewall/ag/ag-overview)): To protect internal servers or applications hosted in Azure from malicious requests that arrive from the Internet or an external network. Application Gateway provides end-to-end encryption.
 
-<img src="Images\afw-AppGaw.png" width="600"> 	 
+<img src="Images\afw-AppGaw.png" width="600"> 	
+
+Inbound TLS termination is available on Application Gateway. Firewall can be deployed behind Application Gateway and inspect decrypted traffic. When Application Gateway is configured with end-to-end encryption, Firewall can decrypt traffic received from Application Gateway for further inspection and re-encrypt before forwarding to the target web server.
+
+Moreover in this use case, Azure application Gateway's WAF will be used to protect HTTP(S) applications from web attacks, and Azure Firewall will protect all other workloads and filter outbound traffic.
+

@@ -27,4 +27,14 @@ Encrypted traffic has a possible security risk and can hide illegal user activit
 
 <img src="Images\afw-premium-without-TLS.png" width="600"> 	
 
+Azure Firewall Premium terminates and inspects TLS connections to **detect, alert, and mitigate** malicious activity in HTTPS. 
+The firewall actually creates two dedicated TLS connections: one with the Web Server (contoso.com) and another connection with the client. 
+Using the customer provided CA certificate, it generates an **on-the-fly certificate**, which replaces the Web Server certificate and shares it with the client to establish the TLS connection between the firewall and the client.
+
 <img src="Images\afw-premium-without-TLS.png" width="600"> 	
+
+The following use cases are supported with Azure Firewall:
+- Outbound TLS Inspection: To protect against malicious traffic that is sent from an internal client hosted in Azure to the Internet.
+- East-West TLS Inspection (includes traffic that goes from/to an on-premises network):To protect your Azure workloads from potential malicious traffic sent from within Azure.
+- Inbound TLS Inspection (Supported only by [Azure Web Application Firewall on Azure Application Gateway](https://learn.microsoft.com/en-us/azure/web-application-firewall/ag/ag-overview): To protect internal servers or applications hosted in Azure from malicious requests that arrive from the Internet or an external network. Application Gateway provides end-to-end encryption.
+

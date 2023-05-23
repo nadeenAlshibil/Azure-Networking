@@ -36,5 +36,6 @@ Using the customer provided CA certificate, it generates an **on-the-fly certifi
 The following use cases are supported with Azure Firewall:
 - Outbound TLS Inspection: To protect against malicious traffic that is sent from an internal client hosted in Azure to the Internet.
 - East-West TLS Inspection (includes traffic that goes from/to an on-premises network):To protect your Azure workloads from potential malicious traffic sent from within Azure.
-- Inbound TLS Inspection (Supported only by [Azure Web Application Firewall on Azure Application Gateway](https://learn.microsoft.com/en-us/azure/web-application-firewall/ag/ag-overview): To protect internal servers or applications hosted in Azure from malicious requests that arrive from the Internet or an external network. Application Gateway provides end-to-end encryption.
+- Inbound TLS Inspection (Supported only by [Azure Web Application Firewall on Azure Application Gateway](https://learn.microsoft.com/en-us/azure/web-application-firewall/ag/ag-overview)): To protect internal servers or applications hosted in Azure from malicious requests that arrive from the Internet or an external network. Application Gateway provides end-to-end encryption.
 
+<img src="Images\afw-AppGaw.png" width="600"> 	 
